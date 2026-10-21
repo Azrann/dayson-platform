@@ -4,6 +4,32 @@ Servicio de identidad de DaysOn/HrPlan: registro, inicio de sesión, emisión de
 
 Documentación basada en los archivos locales revisados el 21 de octubre de 2026.
 
+<!-- BEGIN project-context -->
+
+## Antigüedad y evidencia
+
+**Año de referencia de esta versión: 2018.** Se toma el archivo de código o configuración más reciente con una fecha histórica recuperable; no se ha podido confirmar la fecha exacta de creación.
+
+- Archivo más reciente datable: **2018-07-02**, [`dayson.auth/src/DaysOn.Auth.Web/Providers/CustomOAuthProvider.cs`](src/DaysOn.Auth.Web/Providers/CustomOAuthProvider.cs); fecha del commit que modificó el archivo, recuperada del Git local.
+- Primer registro del repositorio Git original que contiene este código: **2015-07-22**. Puede corresponder a una importación; no prueba cuándo se escribió por primera vez.
+- Dependencia fechada más reciente entre las comprobadas: [Castle.Core 4.3.1](https://www.nuget.org/packages/Castle.Core/4.3.1), publicada el **2018-06-20** (versión declarada), en [`dayson.auth/src/DaysOn.Auth.Acceptance/packages.config`](src/DaysOn.Auth.Acceptance/packages.config).
+- Referencia adicional: destino `v4.6` en [`dayson.auth/src/DaysOn.Auth.Acceptance/DaysOn.Auth.Acceptance.csproj`](src/DaysOn.Auth.Acceptance/DaysOn.Auth.Acceptance.csproj); su [versión estable se publicó el 2015-07-20](https://dotnet.microsoft.com/en-us/platform/support/policy/dotnet-framework). Es una pista de generación tecnológica; pudieron existir versiones preliminares anteriores.
+
+La publicación de una dependencia sitúa la configuración conservada a partir de esa versión, si la referencia es válida. Una actualización de paquetes puede ser mucho más reciente que el inicio del proyecto. No se restauraron paquetes para comprobarlo.
+
+Se descartaron las marcas de tiempo de la copia de octubre de 2026 y los documentos generados durante esta revisión. Las fechas recuperables no garantizan que no existan cambios posteriores sin datar.
+
+## Por qué merece la pena mirarlo
+
+Los cambios de equipos y responsables se traducen en cambios de roles, además del registro y la emisión de tokens. Esa relación entre eventos de negocio y permisos ofrece un caso concreto de identidad dentro de una aplicación distribuida.
+
+Puntos de entrada al código:
+
+- [`src/DaysOn.Auth.Domain/Events/CheckAddManagerRoleEventHandler.cs`](src/DaysOn.Auth.Domain/Events/CheckAddManagerRoleEventHandler.cs)
+- [`src/DaysOn.Auth.Domain/Application/AuthService.cs`](src/DaysOn.Auth.Domain/Application/AuthService.cs)
+
+<!-- END project-context -->
+
 ## Estructura y responsabilidades
 
 | Ruta | Responsabilidad |

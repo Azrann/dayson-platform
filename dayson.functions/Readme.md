@@ -4,6 +4,33 @@ Procesamiento de eventos y operaciones de apoyo de DaysOn/HrPlan: validación de
 
 Documentación basada en los archivos locales revisados el 21 de octubre de 2026.
 
+<!-- BEGIN project-context -->
+
+## Antigüedad y evidencia
+
+**Año de referencia de esta versión: 2018.** Se toma el archivo de código o configuración más reciente con una fecha histórica recuperable; no se ha podido confirmar la fecha exacta de creación.
+
+- Archivo más reciente datable: **2018-06-30**, [`dayson.functions/src/DaysOn.Functions.sln`](src/DaysOn.Functions.sln); fecha del commit que modificó el archivo, recuperada del Git local.
+- Primer registro del repositorio Git original que contiene este código: **2016-08-02**. Puede corresponder a una importación; no prueba cuándo se escribió por primera vez.
+- Dependencia fechada más reciente entre las comprobadas: [Castle.Core 4.3.1](https://www.nuget.org/packages/Castle.Core/4.3.1), publicada el **2018-06-20** (versión declarada), en [`dayson.functions/src/DaysOn.Functions.Api/packages.config`](src/DaysOn.Functions.Api/packages.config).
+- Referencia adicional: destino `v4.6` en [`dayson.functions/src/DaysOn.Functions.Api/DaysOn.Functions.Api.csproj`](src/DaysOn.Functions.Api/DaysOn.Functions.Api.csproj); su [versión estable se publicó el 2015-07-20](https://dotnet.microsoft.com/en-us/platform/support/policy/dotnet-framework). Es una pista de generación tecnológica; pudieron existir versiones preliminares anteriores.
+
+La publicación de una dependencia sitúa la configuración conservada a partir de esa versión, si la referencia es válida. Una actualización de paquetes puede ser mucho más reciente que el inicio del proyecto. No se restauraron paquetes para comprobarlo.
+
+Se descartaron las marcas de tiempo de la copia de octubre de 2026 y los documentos generados durante esta revisión. Las fechas recuperables no garantizan que no existan cambios posteriores sin datar.
+
+## Por qué merece la pena mirarlo
+
+Los handlers conectan solicitudes de vacaciones, cálculo de días laborables y envío de correo. Es un ejemplo concreto de cómo sacar trabajo de coordinación a consumidores de eventos y mantenerlo separado de la API que recibe la solicitud.
+
+Puntos de entrada al código:
+
+- [`src/DaysOn.Functions.Api/BusEventHandlers/CalculateBusinessDaysEventHandler.cs`](src/DaysOn.Functions.Api/BusEventHandlers/CalculateBusinessDaysEventHandler.cs)
+- [`src/DaysOn.Functions.Api/BusEventHandlers/AddHolidayRequestEventHandler.cs`](src/DaysOn.Functions.Api/BusEventHandlers/AddHolidayRequestEventHandler.cs)
+- [`src/DaysOn.Functions.Domain/Services/CreateHolidayService.cs`](src/DaysOn.Functions.Domain/Services/CreateHolidayService.cs)
+
+<!-- END project-context -->
+
 ## Estructura y responsabilidades
 
 | Ruta | Responsabilidad |

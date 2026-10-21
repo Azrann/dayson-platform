@@ -4,6 +4,19 @@ Carpeta de repositorio DaysOn sin archivos de trabajo: únicamente se encontró 
 
 Documentación basada en los archivos locales revisados el 21 de octubre de 2026.
 
+<!-- BEGIN project-context -->
+
+## Antigüedad y evidencia
+
+**Año de creación: sin determinar.** No se conserva código con una fecha histórica verificable.
+
+
+## Por qué merece la pena mirarlo
+
+No se conserva código que permita atribuirle una responsabilidad concreta. Su interés es documental dentro del mapa de DaysOn; el nombre por sí solo no demuestra una implementación de administración o despliegue.
+
+<!-- END project-context -->
+
 ## Tecnologías y requisitos
 
 No se puede determinar una tecnología o forma de arranque a partir de esta copia.

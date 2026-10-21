@@ -2,6 +2,48 @@
 
 Aplicación DaysOn/HrPlan: identidad, empresas, vacaciones, mensajería, registro y clientes web.
 
+<!-- BEGIN project-context -->
+
+## Antigüedad y evidencia
+
+**Año de referencia de esta versión: 2018.** Se toma el archivo de código o configuración más reciente con una fecha histórica recuperable; no se ha podido confirmar la fecha exacta de creación.
+
+- Archivo más reciente datable: **2018-07-02**, [`dayson.auth/src/DaysOn.Auth.Web/Providers/CustomOAuthProvider.cs`](dayson.auth/src/DaysOn.Auth.Web/Providers/CustomOAuthProvider.cs); fecha del commit que modificó el archivo, recuperada del Git local.
+- Primer registro entre los repositorios Git originales incluidos: **2015-07-12**. Puede corresponder a una importación; no prueba cuándo se escribió por primera vez.
+- Dependencia fechada más reciente entre las comprobadas: [Castle.Core 4.3.1](https://www.nuget.org/packages/Castle.Core/4.3.1), publicada el **2018-06-20** (versión declarada), en [`dayson.auth/src/DaysOn.Auth.Acceptance/packages.config`](dayson.auth/src/DaysOn.Auth.Acceptance/packages.config).
+- Referencia adicional: destino `v4.6.1` en [`dayson.common/src/DaysOn.Common.ServiceBase.Test/DaysOn.Common.ServiceBase.Test.csproj`](dayson.common/src/DaysOn.Common.ServiceBase.Test/DaysOn.Common.ServiceBase.Test.csproj); su [versión estable se publicó el 2015-11-30](https://dotnet.microsoft.com/en-us/platform/support/policy/dotnet-framework). Es una pista de generación tecnológica; pudieron existir versiones preliminares anteriores.
+
+La publicación de una dependencia sitúa la configuración conservada a partir de esa versión, si la referencia es válida. Una actualización de paquetes puede ser mucho más reciente que el inicio del proyecto. No se restauraron paquetes para comprobarlo.
+
+Se descartaron las marcas de tiempo de la copia de octubre de 2026 y los documentos generados durante esta revisión. Las fechas recuperables no garantizan que no existan cambios posteriores sin datar.
+
+Años de referencia por componente (archivo más reciente datable):
+
+| Componente | Año |
+| --- | --- |
+| [`dayson.auth`](dayson.auth/) | 2018 |
+| [`dayson.common`](dayson.common/) | 2018 |
+| [`dayson.company`](dayson.company/) | 2018 |
+| [`dayson.facade`](dayson.facade/) | 2018 |
+| [`dayson.functions`](dayson.functions/) | 2018 |
+| [`dayson.holidays`](dayson.holidays/) | 2018 |
+| [`dayson.log`](dayson.log/) | 2016 |
+| [`dayson.logapi`](dayson.logapi/) | 2016 |
+| [`dayson.tower`](dayson.tower/) | Sin determinar |
+| [`dayson.ui`](dayson.ui/) | 2018 |
+
+## Por qué merece la pena mirarlo
+
+El recorrido solicitud de vacaciones → eventos → cálculo de días laborables → aprobación conecta varios microservicios con un problema de negocio reconocible. El calendario del frontend ayuda a ver el resultado de esa separación de responsabilidades.
+
+Puntos de entrada al código:
+
+- [`dayson.holidays/src/DaysOn.HolidaysBc.Domain`](dayson.holidays/src/DaysOn.HolidaysBc.Domain/)
+- [`dayson.functions/src/DaysOn.Functions.Api/BusEventHandlers`](dayson.functions/src/DaysOn.Functions.Api/BusEventHandlers/)
+- [`dayson.ui/v2/src/app/holidays/calendar`](dayson.ui/v2/src/app/holidays/calendar/)
+
+<!-- END project-context -->
+
 ## Contenido
 
 | Directorio | Función |

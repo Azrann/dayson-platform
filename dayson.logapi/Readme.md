@@ -4,6 +4,32 @@ API de consulta y limpieza de registros de DaysOn, con almacenamiento SQL y acce
 
 Documentación basada en los archivos locales revisados el 21 de octubre de 2026.
 
+<!-- BEGIN project-context -->
+
+## Antigüedad y evidencia
+
+**Año de referencia de esta versión: 2016.** Se toma el archivo de código o configuración más reciente con una fecha histórica recuperable; no se ha podido confirmar la fecha exacta de creación.
+
+- Archivo más reciente datable: **2016-12-18**, [`dayson.logapi/src/DaysOn.Log.IISHost/Web.config`](src/DaysOn.Log.IISHost/Web.config); fecha del commit que modificó el archivo, recuperada del Git local.
+- Primer registro del repositorio Git original que contiene este código: **2016-11-20**. Puede corresponder a una importación; no prueba cuándo se escribió por primera vez.
+- Dependencia fechada más reciente entre las comprobadas: [Dapper 1.50.2](https://www.nuget.org/packages/Dapper/1.50.2), publicada el **2016-07-22** (versión declarada), en [`dayson.logapi/src/DaysOn.Log.Web/packages.config`](src/DaysOn.Log.Web/packages.config).
+- Referencia adicional: destino `v4.6` en [`dayson.logapi/src/DaysOn.Log.IISHost/DaysOn.Log.IISHost.csproj`](src/DaysOn.Log.IISHost/DaysOn.Log.IISHost.csproj); su [versión estable se publicó el 2015-07-20](https://dotnet.microsoft.com/en-us/platform/support/policy/dotnet-framework). Es una pista de generación tecnológica; pudieron existir versiones preliminares anteriores.
+
+La publicación de una dependencia sitúa la configuración conservada a partir de esa versión, si la referencia es válida. Una actualización de paquetes puede ser mucho más reciente que el inicio del proyecto. No se restauraron paquetes para comprobarlo.
+
+Se descartaron las marcas de tiempo de la copia de octubre de 2026 y los documentos generados durante esta revisión. Las fechas recuperables no garantizan que no existan cambios posteriores sin datar.
+
+## Por qué merece la pena mirarlo
+
+LogService concentra lectura de registros, selección de errores y limpieza mediante Dapper. Es útil como ejemplo compacto de una API de observabilidad con persistencia SQL y un cliente web independiente.
+
+Puntos de entrada al código:
+
+- [`src/DaysOn.Log.Web/Services/LogService.cs`](src/DaysOn.Log.Web/Services/LogService.cs)
+- [`src/DaysOn.Log.Web/Controllers/HomeController.cs`](src/DaysOn.Log.Web/Controllers/HomeController.cs)
+
+<!-- END project-context -->
+
 ## Estructura y responsabilidades
 
 | Ruta | Responsabilidad |

@@ -4,6 +4,28 @@ Interfaz web de consulta de registros de DaysOn, hecha con AngularJS, jQuery y B
 
 Documentación basada en los archivos locales revisados el 21 de octubre de 2026.
 
+<!-- BEGIN project-context -->
+
+## Antigüedad y evidencia
+
+**Año de referencia de esta versión: 2016.** Se toma el archivo de código o configuración más reciente con una fecha histórica recuperable; no se ha podido confirmar la fecha exacta de creación.
+
+- Archivo más reciente datable: **2016-11-26**, [`dayson.log/src/DaysonLog/js/daysonlogapisApp.js`](src/DaysonLog/js/daysonlogapisApp.js); fecha del commit que modificó el archivo, recuperada del Git local.
+- Primer registro del repositorio Git original que contiene este código: **2016-10-08**. Puede corresponder a una importación; no prueba cuándo se escribió por primera vez.
+
+Se descartaron las marcas de tiempo de la copia de octubre de 2026 y los documentos generados durante esta revisión. Las fechas recuperables no garantizan que no existan cambios posteriores sin datar.
+
+## Por qué merece la pena mirarlo
+
+Es una interfaz AngularJS pequeña para consultar registros y errores mediante una API separada. Su tamaño permite seguir de principio a fin el enlace entre un servicio HTTP, el controlador de pantalla y la presentación de los resultados.
+
+Puntos de entrada al código:
+
+- [`src/DaysonLog/js/daysonlogapisApp.js`](src/DaysonLog/js/daysonlogapisApp.js)
+- [`src/DaysonLog/index.html`](src/DaysonLog/index.html)
+
+<!-- END project-context -->
+
 ## Estructura y responsabilidades
 
 | Ruta | Responsabilidad |
