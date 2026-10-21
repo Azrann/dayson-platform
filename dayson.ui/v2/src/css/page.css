@@ -1,0 +1,23 @@
+html, body {
+    height: 100%;
+    display: block;
+    margin: 0;
+}
+
+* {
+    font-family: 'Roboto', sans-serif;
+    box-sizing: border-box;
+}
+
+[hidden] { 
+    display: none !important;
+}
+
+.view-container .mat-drawer-backdrop.mat-drawer-shown {
+    background-color: rgba(229, 229, 229, 0.6);
+}
+
+.view-container mat-sidenav {
+    box-shadow: 0 0 20px 0 #ddd;
+    background: #f4f7f9;
+}

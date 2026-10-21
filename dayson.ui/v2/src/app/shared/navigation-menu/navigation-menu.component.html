@@ -1,0 +1,15 @@
+<div class='menu-container mat-typography' *ngIf='navigationMenu'>
+    <div class='menu-groups'>
+        <div class='menu-group' *ngFor='let group of navigationMenu.groups' [ngClass]='group.cssClass'>
+            <div class='group-title' *ngIf='group.title'>{{group.title}}</div>
+            <div class='group-title' *ngIf='!group.title'>&nbsp;</div>
+
+            <div class='menu-items'>
+                <div class='menu-item' *ngFor='let item of group.items' class='{{item.cssClass}}' [ngClass]='{"selected": navigationMenu.selected === item.id}' fxLayout='row' (click)='itemClicked(item)'>
+                    <mat-icon class='material-icons' *ngIf='item.icon'>{{item.icon}}</mat-icon>
+                    <span>{{item.text}}</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

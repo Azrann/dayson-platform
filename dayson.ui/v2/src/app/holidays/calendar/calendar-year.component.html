@@ -1,0 +1,9 @@
+<div 
+    *ngIf='year && (mode === "Year" || mode === "Month")' 
+    [fxLayout]='mode === "Year" ? "row wrap" : "column"'
+    [fxLayoutAlign]='mode === "Year" ? "center start" : "start stretch"'
+>
+    <daysonapp-calendar-month [mode]='mode' [month]='month' *ngFor='let month of year.months;trackBy:monthTracker' (holidayClicked)='onHolidayClicked($event)'>
+    </daysonapp-calendar-month>
+</div>
+

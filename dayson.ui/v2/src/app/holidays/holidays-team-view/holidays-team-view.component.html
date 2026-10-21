@@ -1,0 +1,34 @@
+<div fxLayout='row' fxLayoutAlign='start stretch'>
+    <div class='selector-panel'>
+        selector panel here
+        <daysonapp-holidays-user-selector 
+            [year]='year' 
+            [userColors]='userColors'
+            (addUser)='addUser($event)' 
+            (removeUser)='removeUser($event)'
+            (refreshUser)='refreshUser($event)'
+        >
+        </daysonapp-holidays-user-selector>
+    </div>
+    <div fxFlex class='calendar-container'>
+        <div fxLayout='row'>
+            <mat-form-field>
+                <mat-select placeholder='Mode' [(value)]='mode' (selectionChange)='modeChanged($event)'>
+                    <mat-option value='Year'>
+                        Year
+                    </mat-option>
+                    <mat-option value='Month'>
+                        Month
+                    </mat-option>
+                    <mat-option value='Week'>
+                        Week
+                    </mat-option>
+                </mat-select>
+            </mat-form-field>
+        </div>
+
+        <daysonapp-calendar-year [year]='holidayYear' [mode]='mode'>
+        </daysonapp-calendar-year>
+
+    </div>
+</div>

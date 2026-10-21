@@ -1,0 +1,60 @@
+
+<a class='dayson-app-tile' href='#/'>
+  <h1>DaysON</h1>
+</a>
+<div class='container'>
+
+  <div class='row'>
+    <div class='col-sm-8 col-sm-offset-2  col-md-6 col-md-offset-3'>
+      <form name='form' class='panel panel-default login-panel' novalidate ng-submit='vm.executeRequest()'>
+        <div class="panel-heading">
+          <h3 class="panel-title">Forgot you password?</h3>
+        </div>
+        <div class='panel-body'>
+          <div class="form-group">
+            <p>
+              If you can't remember your password, we'll send you an email with a link you can use to reset it.
+            </p>
+          </div>
+          <div class='form-group has-feedback' ng-class='{"has-error": form.email.$invalid && form.email.$touched}'>
+            <input type='email' name='email' class='form-control' placeholder='email' ng-disabled='vm.requestSent' ng-required='true' ng-model='vm.email'>
+            <span class="glyphicon glyphicon-remove form-control-feedback" aria-hidden="true" ng-show='form.email.$invalid && form.email.$touched'></span>
+            <span class="glyphicon glyphicon-asterisk form-control-feedback" aria-hidden="true" ng-show='!(form.email.$invalid && form.email.$touched)'></span>
+          </div>
+
+          <!-- errors -->
+          <div ng-messages="form.$error" role="alert" ng-messages-multiple ng-show='!vm.requestSent && (form.$invalid || vm.errors)'>
+            <div class='alert alert-danger'>
+              <div ng-message="required">
+                <span class='glyphicon glyphicon-exclamation-sign' aria-hidden="true"></span>
+                Please enter all required fields
+              </div>
+              <div ng-message="email">
+                <span class='glyphicon glyphicon-exclamation-sign' aria-hidden="true"></span>
+                Please enter a valid email
+              </div>
+            </div>
+          </div>
+
+          <div class='clearfix form-group' ng-hide='vm.requestSent'>
+            <button type='submit' class='btn btn-primary pull-left' ng-disabled='form.$invalid'>
+              Register
+            </button>
+          </div>
+
+          <div class='alert alert-success' ng-show='vm.requestSent'>
+            <div>
+              <span class='glyphicon glyphicon-ok' aria-hidden="true"></span>
+              A reset email was sent to your account!
+            </div>
+          </div>
+          <div class='form-group' ng-show='vm.requestSent'>
+            <a type='button' class='btn btn-success' href='#/'>
+              Go back to login
+            </a>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

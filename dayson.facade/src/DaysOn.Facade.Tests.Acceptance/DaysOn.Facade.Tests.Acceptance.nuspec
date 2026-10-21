@@ -1,0 +1,14 @@
+<?xml version="1.0"?>
+<package >
+  <metadata>
+    <id>DaysOn.Facade.Tests.Acceptance</id>
+    <version>1.0.0.0</version>
+    <authors>Bookatable</authors>
+    <owners>Bookatable</owners>
+    <projectUrl>https://bitbucket.org/Bookatable/</projectUrl>
+    <description>Acceptance test files for DaysOn.Facade</description>
+  </metadata>
+  <files>
+    <file src="bin\Release\*.*" target="bin" />
+  </files>
+</package>

@@ -1,0 +1,17 @@
+<label class='image-control' fxLayout='column' for='{{controlName}}'>
+    <div 
+        class='image-contents' 
+        [ngStyle]='{"background-image": "url(" + image + ")"}' 
+        [ngClass]='{"file-hover": fileHover}' 
+        (drop)="onDrop($event)"
+        (dragenter)="onDragEnter($event)" 
+        (dragleave)="onDragLeave($event)" 
+        (dragover)="onDragOver($event)"
+    >
+        <span *ngIf='!image' class='text'>{{text}}</span>
+    </div>
+
+    <div class='image-label' *ngIf='showHelp'>Click or drag&amp;drop file</div>
+
+    <input class='image-input' id='{{controlName}}' type="file" (change)='fileChanged($event)'>
+</label>

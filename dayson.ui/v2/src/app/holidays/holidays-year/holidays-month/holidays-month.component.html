@@ -1,0 +1,27 @@
+<div class='title'>{{holidayMonth.name}}</div>
+
+<div *ngFor='let week of holidayMonth.weeks' class='week'>
+    <div 
+        class='day {{day.cssClass}}'
+        *ngFor='let day of week.days' 
+        [ngStyle]='{"left": (day.dayOfWeek - 1) * 32 + "px"}'
+        [ngClass]='{"weekend": day.dayOfWeek == 6 || day.dayOfWeek == 7 }'
+        [title]='day.tooltip' container='body'
+        (mouseenter)='hoverDay(day, true)'
+        (mouseleave)='hoverDay(day, false)'
+        (click)='dayClicked(day)'
+    >
+
+        <div
+            *ngFor='let requestedHoliday of day.requestedHolidays'
+            class='holiday-overlay'
+            [ngStyle]='{ "background-color": requestedHoliday.color, "color": requestedHoliday.color }'
+            [ngClass]='{ "holiday-overlay-end": day.endsSequence[requestedHoliday.id], "holiday-overlay-start": day.startsSequence[requestedHoliday.id], "hovered": requestedHoliday.hovered }'
+            >
+            <!-- {{day.day}} -->
+        </div>
+        <div class='day-text'>
+            {{day.day}}
+        </div>
+    </div>
+</div>

@@ -1,0 +1,21 @@
+<div
+    class='request'
+    [ngClass]='{ "requested": holiday.status === 0, "accepted": holiday.status === 1, "rejected": holiday.status === 2, "cancelled": holiday.status === 3 }' 
+    (click)='openHoliday()'
+    fxLayout='row'
+    fxLayoutAlign='start center'
+>
+<!-- 
+    "hovered": requestedHoliday.hovered, 
+    (mouseenter)='hoverButton(true)' 
+    (mouseleave)='hoverButton(false)'  
+-->
+    <div class='value' fxLayout='column' fxFlex>
+        <div class='text'>{{holiday.notes}}</div>
+        <div class='dates'>{{dateText}}</div>
+    </div>
+    <div class='day-amount'>
+        {{holiday.numberOfDays}}
+    </div>
+    <mat-icon class='material-icon status-ball'>lens</mat-icon>
+</div>

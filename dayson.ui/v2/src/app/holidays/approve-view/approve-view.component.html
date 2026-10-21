@@ -1,0 +1,93 @@
+<div class='information-section' fxLayout='column' fxLayoutAlign='start stretch' *ngIf='holidays'>
+    <div class='information-title' fxLayout='row'>
+        <div fxFlex>
+            <div class='title-text'>
+                <span *ngIf='holidays.length'>Absence requests</span>
+                <span *ngIf='!holidays.length'>There are no holiday requests pending</span>
+            </div>
+            <div class='title-subtext' *ngIf='holidays.length'>
+                {{holidays.length}} pending
+            </div>
+        </div>
+
+        <!-- <button mat-mini-fab color='primary' (click)='addMember()'>
+            <mat-icon class="md-24 material-icons" aria-label="Add new Team member" >add_circle</mat-icon>
+        </button> -->
+
+    </div>
+
+    <!-- <code><pre>{{holidays | json}}</pre></code>
+        <code><pre>{{usersByHoliday | json}}</pre></code> -->
+    <table class='standard-table' *ngIf='usersById && holidays?.length'>
+        <thead>
+            <tr>
+                <th>
+                    <!-- user -->
+                </th>
+                <th>
+                    <!-- dates -->
+                </th>
+                <th fxHide.lt-md>
+                    <!-- amount and description -->
+                </th>
+                <th>
+                    <!-- actions -->
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor='let holiday of holidays'>
+                <td>
+                    <!-- user -->
+                    <div class='user-name-col'>
+                        <div class='member-image placeholder' *ngIf='!usersById[holiday.userId].imageUrl' fxHide.lt-md>
+                            <mat-icon>account_circle</mat-icon>
+                        </div>
+                        <img [src]='usersById[holiday.userId].imageUrl' class='member-image' *ngIf='usersById[holiday.userId].imageUrl' fxHide.lt-md/>
+                        <div class='user-name'>
+                            <span>{{usersById[holiday.userId].firstName}}</span>
+                            <span>{{usersById[holiday.userId].middleName}}</span>
+                            <span>{{usersById[holiday.userId].lastName}}</span>
+                            <div class='user-type'>{{usersById[holiday.userId].jobTitle}}</div>
+                        </div>
+                    </div>
+                </td>
+                <td>
+                    <!-- dates -->
+                    <div class='dates' fxLayout='column'>
+                        <div>
+                            <span class='label'>FROM:</span>
+                            <span class='date'>{{holiday.dateFrom | date}}</span>
+                        </div>
+                        <div>
+                            <span class='label'>TO:</span>
+                            <span class='date'>{{holiday.dateTo | date}}</span>
+                        </div>
+                    </div>
+                </td>
+                <td fxHide.lt-md>
+                    <!-- amount and description -->
+                    <div class='amount-part' fxLayout='column'>
+                        <div class='amount'>{{holiday.numberOfDays}} days</div>
+                        <div class='description' fxHide.lt-sm>{{holiday.notes}}</div>
+                    </div>
+                </td>
+                <td>
+                    <!-- actions -->
+                    <div fxLayout='row' fxLayout.lt-sm='column' class='buttons'>
+                        <button mat-raised-button class='deny-button' (click)='reject(holiday)'>
+                            <!-- <mat-icon class='material-icons'>add_circle</mat-icon> -->
+                            Deny
+                        </button>
+                        <button mat-raised-button color='primary' (click)='approve(holiday)'>
+                            <!-- <mat-icon class='material-icons'>add_circle</mat-icon> -->
+                            Approve
+                        </button>
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+<daysonapp-loading-splash transparent='true' *ngIf='loading'>
+</daysonapp-loading-splash>

@@ -1,0 +1,22 @@
+<div class='month-name'>
+    {{month.name}}
+</div>
+<table [ngClass]='{"small-calendar": mode === "Year"}'>
+    <tbody>
+        <tr class='day-name-row'>
+            <td>M</td>
+            <td>T</td>
+            <td>W</td>
+            <td>T</td>
+            <td>F</td>
+            <td>S</td>
+            <td>S</td>
+        </tr>
+        <tr *ngFor='let week of month.weeks; trackBy: weekTracker'>
+            <td *ngFor='let day of week.days; trackBy: dayTracker'>
+                <daysonapp-calendar-day [day]='day' *ngIf='day' (holidayClicked)='onHolidayClicked($event)'>
+                </daysonapp-calendar-day>
+            </td>
+        </tr>
+    </tbody>
+</table>

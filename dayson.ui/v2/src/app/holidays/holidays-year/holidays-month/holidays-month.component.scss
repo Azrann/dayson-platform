@@ -1,0 +1,120 @@
+@import '~css/theme.scss';
+
+:host {
+    display: block;
+    /*background: white;*/
+    width: 245px;
+    padding: 0px 15px 10px 15px;
+}
+
+.title {
+    text-align: center;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.week {
+    height: 22px;
+    position: relative;
+}
+
+.day {
+    // position: absolute;
+    // width: 40px;
+    // height: 26px;
+    // margin: 2px 0;
+    // line-height: 26px;
+    // text-align: right;
+    // padding: 0 15px 0 0;
+    position: absolute;
+    width: 34px;
+    height: 20px;
+    margin: 2px 0;
+    line-height: 20px;
+    text-align: right;
+    padding: 0 10px 0 0;
+    font-size: 12px;
+}
+
+// .sequence-start {
+//     border-top-left-radius: 13px;
+//     border-bottom-left-radius: 13px;
+// }
+
+// .sequence-end {
+//     border-top-right-radius: 13px;
+//     border-bottom-right-radius: 13px;
+// }
+
+.weekend {
+    color: #BBB;
+}
+
+.sequence {
+    font-weight: bold;
+}
+
+.sequence.weekend {
+    color: #888;
+    font-weight: normal;
+}
+
+.sequence {
+    font-weight: bold;
+}
+
+// .sequence.accepted {
+//     background: $holiday-accepted-color;
+// }
+
+// .sequence.rejected {
+//     background: $holiday-rejected-color;
+// }
+
+// .sequence.requested {
+//     background: $holiday-requested-color;
+// }
+
+// .sequence.cancelled {
+//     background: $holiday-cancelled-color;
+// }
+
+.sequence.accepted,
+.sequence.rejected,
+.sequence.requested,
+.sequence.cancelled {
+    cursor: pointer;
+}
+
+.sequence.hovered {
+    background-color: #ffffaa;
+}
+
+.holiday-overlay {
+    position: absolute;
+    top: -1px;
+    left: 0;
+    width: 32px;
+    height: 21px;
+    opacity: 1;
+
+    &.holiday-overlay-start {
+        border-top-left-radius: 20px;
+        border-bottom-left-radius: 20px;
+    }
+
+    &.holiday-overlay-end {
+        border-top-right-radius: 20px;
+        border-bottom-right-radius: 20px;
+    }
+
+    &.hovered {
+        background: yellow !important;
+    }  
+}
+
+
+.day-text {
+    position: relative;
+}
+

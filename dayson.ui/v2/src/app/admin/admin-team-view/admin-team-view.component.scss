@@ -1,0 +1,111 @@
+.search-container {
+    padding: 10px 20px;
+    margin-bottom: 20px;
+
+    background: #fff;
+    border: 1px solid #eee;
+}
+
+.team-selector {
+    width: 300px;
+    padding-top: 20px;
+    // box-shadow: -8px 0 16px -8px red inset;
+
+    .add-user-button {
+        margin: 20px;
+        background: rgb(219, 30, 93);
+    }
+
+    .team-section {
+        margin-top: 10px;
+
+        .team-button {
+            border-bottom: 1px solid #eee;
+            padding: 10px;
+
+            &.selected {
+                background: #eee;
+            }
+
+            mat-icon {
+                opacity: 0.6;
+                font-size: 20px;
+            }
+        }
+
+        .team-button:first-child {
+            border-top: 1px solid #eee;
+        }
+
+        .add-team {
+            color: rgb(88, 155, 58);
+        }
+    }
+}
+
+.user-selector {
+    padding: 20px;
+    box-shadow: 18px 0 24px 18px #ddd;
+    font-size: 14px;
+
+    table {
+        width: 100%;
+        border-spacing: 0;
+    }
+
+    td {
+        padding: 4px 0 4px 10px;
+        margin: 0;
+
+        cursor: pointer;
+
+        &:first-child {
+            padding-left: 15px;
+        }
+
+    }
+
+    tr:hover td {
+        background-color: rgba(0,0,0,.12);
+    }
+
+    .image-col {
+        max-width: 60px;
+        min-width: 60px;
+        width: 60px;
+        img {
+            border-radius: 30px;
+            width: 18px;
+            height: 18px;
+            overflow: hidden;
+        }
+
+        .placeholder {
+            border-radius: 30px;
+            width: 40px;
+            height: 40px;
+            overflow: hidden;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: #039BE5;
+            color: white;
+            font-size: 18px;
+        }
+    }
+
+    .user-name {
+        font-weight: bold;
+    }
+
+    .user-title {
+        opacity: 0.75;
+        font-size: 12px;
+    }
+}
+
+.no-overflow {
+    overflow: hidden;
+}
+

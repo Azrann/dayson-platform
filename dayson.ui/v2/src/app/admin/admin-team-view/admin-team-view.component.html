@@ -1,0 +1,94 @@
+<div class='no-overflow' fxLayout='row' fxAlign='start stretch'>
+    <div class='team-selector' fxLayout='column' fxAlign='start stretch'>
+        <button class='add-user-button' mat-raised-button color='primary' (click)='addUser()'>
+            ADD NEW USER
+        </button>
+
+        <div class='team-section' fxLayout='column' fxLayoutAlign='start stretch'>
+            <button class='team-button' mat-button [ngClass]='{"selected": selectedTeamIds.length == 0 }' (click)='selectTeam(null)'>
+                ALL USERS
+            </button>
+
+            <div fxLayout='row' *ngFor='let team of teams ; trackBy: getTeamId' class='team-button'>
+                <button mat-button [ngClass]='{"selected": this.selectedTeamIdDict[team.id] }'
+                    (click)='selectTeam(team)' fxFlex>
+                    {{team.name}}
+                </button>
+
+                <button mat-icon-button (click)='editTeam(team)'>
+                    <mat-icon class='material-icons'>edit</mat-icon>
+                </button>
+        
+            </div>
+
+            <button class='team-button add-team' mat-button (click)='addNewTeam()'>
+                <mat-icon class='material-icons md-18'>add</mat-icon>
+                ADD NEW TEAM
+            </button>
+        </div>
+    </div>
+    <div class='user-selector' fxFlex fxLayout='column' fxLayoutAlign='start stretch'>
+
+        <div fxLayout='row' fxLayoutAlign='start center'>
+            <mat-form-field>
+                <mat-icon matPrefix>search</mat-icon>
+                <input matInput maxlength="50" placeholder="Search text" autofocus [ngModel]='searchText' (ngModelChange)='searchTextChanged($event)'>
+            </mat-form-field>
+        </div>
+
+        <div fxLayout='row' fxLayoutAlign='start center'>
+            <h3 fxFlex>
+                    <span *ngIf='!selectedTeamIds.length' fxFlex>All users</span>
+                    <span *ngIf='selectedTeamIds.length' fxFlex>
+                        Users in
+                    </span>
+                    <span *ngFor='let id of selectedTeamIds; let index = index'>
+                        <span>{{teamDict[id].name}}</span><span *ngIf='index !== selectedTeamIds.length - 1'>,</span>
+                    </span>
+                    <span *ngIf='searchText'>
+                        that match '{{searchText}}'
+                    </span>
+            </h3>
+            <button mat-icon-button disabled>
+                <mat-icon class='material-icons'>more_vert</mat-icon>
+            </button>
+        </div>
+
+        <table>
+            <tbody>
+                <tr class='users' *ngFor='let user of users ; trackBy: getUserId' (click)='selectUser(user)'>
+                    <td class='image-col'>
+                        <div class='image'>
+                            <img [src]='user.pictureUrl' *ngIf='user.pictureUrl'>
+                            <div class='placeholder' *ngIf='!user.pictureUrl'>
+                                {{user.initials}}
+                            </div>
+                        </div>
+                    </td>
+                    <td>
+                        <div class='user-name'>
+                            <span>{{user.firstName}}</span>
+                            <span>{{user.middleName}}</span>
+                            <span>{{user.lastName}}</span>
+                        </div>
+                        <div class='user-title'>
+                            {{user.jobTitle}}
+                        </div>
+                    </td>
+                    <td>
+                        {{user.teamName}}
+                    </td>
+                    <td>
+                        {{user.email}}
+                    </td>
+                    <td>
+                        {{user.phone}}
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<daysonapp-loading-splash transparent='true' *ngIf='loading'>
+</daysonapp-loading-splash>

@@ -1,0 +1,85 @@
+<daysonapp-header subtitle='Register your team'>
+</daysonapp-header>
+
+<div fxLayout='row' fxLayoutAlign='center center'>
+    <form novalidate autocomplete="off" (ngSubmit)="signUp(suform)" #suform='ngForm' fxLayout='column' fxLayoutAlign='start stretch'>
+
+        <mat-form-field>
+            <input name="firstname" matInput placeholder="First name" maxlength="50" required autofocus [ngModel]='initializedFirstName' #firstname='ngModel'>
+            <mat-error>
+                <div *ngIf='firstname.errors?.required'>First name is required</div>
+                <div *ngIf='firstname.errors?.maxlength'>Length must be maximum 50 characters long</div>
+            </mat-error>
+        </mat-form-field>
+
+        <mat-form-field>
+            <input name="middlename" matInput placeholder="Middle name" maxlength="50" [ngModel]='initializedMiddleName' #middlename='ngModel'>
+            <mat-error>
+                <div *ngIf='middlename.errors?.maxlength'>Length must be maximum 50 characters long</div>
+            </mat-error>
+        </mat-form-field>
+
+        <mat-form-field>
+            <input name="lastname" matInput placeholder="Last name" maxlength="50" required [ngModel]='initializedLastName' #lastname='ngModel'>
+            <mat-error>
+                <div *ngIf='lastname.errors?.required'>Last name is required</div>
+                <div *ngIf='lastname.errors?.maxlength'>Length must be maximum 50 characters long</div>
+            </mat-error>
+        </mat-form-field>
+
+        <mat-form-field>
+            <input name="email" matInput email placeholder="Email address" maxlength="50" required [ngModel]='initializedEmail' #email='ngModel'>
+            <mat-error>
+                <div *ngIf='email.errors?.required'>Email is required</div>
+                <div *ngIf='email.errors?.email'>Invalid email</div>
+                <div *ngIf='email.errors?.maxlength'>Length must be maximum 50 characters long</div>
+            </mat-error>
+        </mat-form-field>
+
+        <mat-form-field>
+            <input name="password" matInput placeholder="Password" type='password' maxlength="50" minlength="6" required [ngModel]='initializedPassword' #password='REPLACE_WITH_YOUR_VALUE'>
+            <mat-error>
+                <div *ngIf='password.errors?.required'>Password is required</div>
+                <div *ngIf='password.errors?.minlength'>Length must be minimum 6 characters</div>
+                <div *ngIf='password.errors?.maxlength'>Length must be maximum 50 characters long</div>
+            </mat-error>
+        </mat-form-field>
+
+        <mat-form-field>
+            <input name="repeatPassword" matInput placeholder="Repeat Password" type='password' [ngModel]='initializedPassword' #repeatPassword='REPLACE_WITH_YOUR_VALUE' 
+            [errorStateMatcher]="matcher">
+            <mat-error>
+                Passwords don't match
+            </mat-error>
+        </mat-form-field>
+
+        <mat-form-field>
+            <input name="companyName" matInput placeholder="Company name" maxlength="50" required [ngModel]='initializedCompanyName' #companyName='ngModel'>
+            <mat-error>
+                <div *ngIf='companyName.errors?.required'>Company name is required</div>
+                <div *ngIf='companyName.errors?.maxlength'>Length must be maximum 50 characters long</div>
+            </mat-error>
+        </mat-form-field>
+
+        <br/>
+
+        <!-- <button type="submit" class="theme-secondary-background form-big-button" [disabled]='!signupForm.valid'>Sign up</button> -->
+        <button mat-raised-button color="primary" [disabled]='!suform.valid || loading' type='submit'>SIGN UP</button>
+        <mat-progress-bar mode="query" *ngIf='loading'></mat-progress-bar>
+        
+        <div class="mat-caption">
+            <span>Already have a user?</span>
+            <a routerLink="/login/signin">Sign in</a>
+        </div>
+
+        <div class="row">
+            <div class="col">
+                <div class="form-group">
+                    <div class="alert alert-danger" role="alert" *ngIf="loginError">
+                        <strong>Error</strong> - {{loginError}}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>

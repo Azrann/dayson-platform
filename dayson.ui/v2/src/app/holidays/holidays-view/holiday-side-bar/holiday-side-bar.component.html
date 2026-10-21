@@ -1,0 +1,35 @@
+<div class='center title' fxLayout='row' fxLayoutAlign='start center'>
+    <button mat-icon-button>
+        <mat-icon class="md-24 material-icons" aria-label="Previous year" (click)='navigate(-1)'>navigate_before</mat-icon>
+    </button>
+
+    <div fxFlex>
+        {{year}}
+    </div>
+
+    <button mat-icon-button>
+        <mat-icon class="md-24 material-icons" aria-label="Next year" (click)='navigate(1)'>navigate_next</mat-icon>
+    </button>
+</div>
+
+<div class='center remaining'>
+    <span class='big'>15</span>
+    <span> of 22</span>
+</div>
+
+<div class='center subtitle'>
+    holiday days remaining
+</div>
+
+<button mat-raised-button color="primary" class='add-button' (click)='addNewHoliday()'>
+    <mat-icon class='material-icons'>add_circle</mat-icon>
+        New holiday request
+</button>
+
+<div class='request-title'>Requests</div>
+<daysonapp-requested-holiday-button 
+    *ngFor='let holiday of filteredHolidays' 
+    [holiday]='holiday'
+    [user]='user'
+    (holidayClicked)='onHolidayClicked($event)'
+></daysonapp-requested-holiday-button>

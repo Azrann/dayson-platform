@@ -1,0 +1,69 @@
+@import '~@angular/material/theming';
+@import '~css/theme.scss';
+
+.title {
+    margin-top: 20px;
+    padding: 0 8px;
+    font-size: 24px;
+}
+
+.subtitle {
+    font-size: 12px;
+    opacity: 0.75;
+    margin-bottom: 20px;
+    padding: 0 8px;
+}
+
+.team {
+    margin: 10px 0 20px;
+
+    .team-name {
+        padding: 0 8px;
+        margin-bottom: 6px;
+        font-weight: bold;
+    }
+
+    .team-user {
+        padding: 6px 8px;
+        border-top: 1px solid #eee;
+        user-select: none;
+        cursor: pointer;
+        
+        &:last-of-type {
+            border-bottom: 1px solid #eee;
+        }
+
+        .user-name {
+            font-size: 13px;
+        }
+
+        &:hover {
+        }
+
+        &.selected {
+            // background-color: mat-color($candy-app-primary);
+            // color: white;
+        }
+
+        .white-color {
+            color: white;
+        }
+        
+        .user-color-icon {
+            margin-right: 4px;
+        }
+    }
+
+    .add-holiday {
+        border: none;
+        background: none;
+        padding: 0;
+        margin: 0;
+
+        i {
+            font-size: 16px;
+        }
+    }
+
+    
+}

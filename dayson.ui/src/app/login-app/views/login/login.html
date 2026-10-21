@@ -1,0 +1,74 @@
+
+<a class='dayson-app-tile' href='#/'>
+  <h1>DaysON</h1>
+</a>
+
+<div class='container'>
+  <div class='row'>
+    <div class='col-sm-8 col-sm-offset-2  col-md-6 col-md-offset-3'>
+      <form name='form' class='panel panel-default login-panel' novalidate ng-submit='vm.executeLogin()'>
+        <!-- head -->
+        <div class="panel-heading">
+          <h3 class="panel-title">Login</h3>
+        </div>
+
+        <!--  fields -->
+        <div class='panel-body'>
+          <div class="form-group has-feedback" ng-class='{"has-error": form.email.$invalid && form.email.$touched}'>
+            <input type='email' name='email' class='form-control' placeholder="email" ng-required='true' ng-model='vm.email'>
+            <span class="glyphicon glyphicon-remove form-control-feedback" aria-hidden="true" ng-show='form.email.$invalid && form.email.$touched'></span>
+            <span class="glyphicon glyphicon-asterisk form-control-feedback" aria-hidden="true" ng-show='!(form.email.$invalid && form.email.$touched)'></span>
+          </div>
+
+          <div class="form-group has-feedback" ng-class='{"has-error": form.password.$invalid && form.password.$touched}'>
+            <input type='password' name='password' class='form-control' placeholder="password" ng-required='true' ng-model='vm.password'>
+            <span class="glyphicon glyphicon-remove form-control-feedback" aria-hidden="true" ng-show='form.password.$invalid && form.password.$touched'></span>
+            <span class="glyphicon glyphicon-asterisk form-control-feedback" aria-hidden="true" ng-show='!(form.password.$invalid && form.password.$touched)'></span>
+          </div>
+
+          <!-- errors -->
+          <div ng-messages="form.$error" role="alert" ng-messages-multiple ng-show='(form.$invalid || vm.errors) && vm.submitted'>
+            <div class='alert alert-danger'>
+              <div ng-message="required">
+                <span class='glyphicon glyphicon-exclamation-sign' aria-hidden="true"></span>
+                Please enter all required fields
+              </div>
+              <div ng-message="email">
+                <span class='glyphicon glyphicon-exclamation-sign' aria-hidden="true"></span>
+                Please enter a valid email
+              </div>
+              <div ng-show='vm.errors.wrongUserPassword'>
+                <span class='glyphicon glyphicon-exclamation-sign' aria-hidden="true"></span>
+                Wrong user/password
+              </div>
+            </div>
+          </div>
+
+          <!-- buttons -->
+          <div class='clearfix form-group'>
+            <button type='submit' class='btn btn-primary pull-left' ng-disabled='form.$invalid'>
+              Login
+            </button>
+            <div class='pull-right'>
+              <small>
+                <a href="#/forgot">
+                  Forgot your password?
+                </a>
+              </small>
+            </div>
+          </div>
+
+          <p class='dayson-login-registernow'>
+            If your company is not registered into our system, you can do it now for free.
+
+            The process is quick and easy, and only takes one minute!
+            <br/>
+            <a href="#/register">
+              Register your company now!
+            </a>
+          </p>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

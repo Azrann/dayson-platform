@@ -1,0 +1,47 @@
+<div fxLayout='row' fxLayoutAlign='start stretch' *ngIf='holidays && user'>
+    <daysonapp-holiday-side-bar 
+        [holidays]='holidays' 
+        [year]='year' 
+        [user]='user' 
+        (updateHolidays)='updateHolidays()'
+        (navigateToYear)='goToYear($event)'
+        (holidayClicked)='openHolidayDetails($event)'
+    >
+    </daysonapp-holiday-side-bar>
+
+    <div fxFlex fxLayout='column' fxLayoutAlign='start stretch' class='calendar-container dayson-nav-view-contents-padding' [ngClass]='{"sidebar-opened": sidebarShow === "show"}'>
+
+        <div fxLayout='row' fxLayoutAlign='center start'>
+            <mat-form-field>
+                <mat-select placeholder='Mode' [(value)]='mode' (selectionChange)='modeChanged($event)'>
+                    <mat-option value='Year'>
+                        Year
+                    </mat-option>
+                    <mat-option value='Month'>
+                        Month
+                    </mat-option>
+                    <mat-option value='Week'>
+                        Week
+                    </mat-option>
+                </mat-select>
+            </mat-form-field>
+        </div>
+
+        <daysonapp-calendar-year [year]='holidayYear' [mode]='mode' (holidayClicked)='openHolidayDetails($event)'>
+        </daysonapp-calendar-year>
+
+        <!-- <daysonapp-holidays-year [holidayYear]='holidayYear'>
+        </daysonapp-holidays-year> -->
+    </div>
+    <!-- this was removed from the designs -->
+    <!--     
+    <div class='year-col dayson-nav-view-contents-padding' fxLayout='column' fxLayoutAlign='start center'>
+        <div class='year-title'>YEAR</div>
+        <button mat-button class='year-button' (click)='goToYear(2017)' [ngClass]='{selected: year == 2017}'>2017</button>
+        <button mat-button class='year-button' (click)='goToYear(2018)' [ngClass]='{selected: year == 2018}'>2018</button>
+        <button mat-button class='year-button' (click)='goToYear(2019)' [ngClass]='{selected: year == 2019}'>2019</button>
+    </div>
+     -->
+</div>
+<daysonapp-loading-splash transparent='true' *ngIf='loading'>
+</daysonapp-loading-splash>

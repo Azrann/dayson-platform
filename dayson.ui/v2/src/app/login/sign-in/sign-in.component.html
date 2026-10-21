@@ -1,0 +1,87 @@
+<daysonapp-header subtitle='Login with your WorkDays account'>
+</daysonapp-header>
+
+<div fxLayout='row' fxLayoutAlign='center center'>
+    <form novalidate autocomplete="off" (ngSubmit)="login(siform)" #siform='ngForm' fxLayout='column' fxLayoutAlign='start stretch'>
+
+        <mat-form-field>
+            <input name="username" matInput placeholder="Username" required autofocus [ngModel]='' #username='REPLACE_WITH_YOUR_VALUE'>
+            <mat-error>
+                This field is required
+            </mat-error>
+        </mat-form-field>
+        
+        <mat-form-field>
+            <input name="password" matInput type='password' placeholder="Password" required [ngModel]='' #password='REPLACE_WITH_YOUR_VALUE'>
+            <mat-error>
+                This field is required
+            </mat-error>
+        </mat-form-field>
+
+        <mat-checkbox color='primary' name="rememberMe" [ngModel]='false' #rememberMe='ngModel'>Remember me!</mat-checkbox>
+
+        <br/><br/>
+
+        <button mat-raised-button color="primary" [disabled]='!siform.valid || loading' type='submit'>SIGN IN</button>
+        <mat-progress-bar mode="query" *ngIf='loading'></mat-progress-bar>
+
+        <div class="mat-caption" fxLayout.xs='column' fxLayoutAlign.gt-xs='space-between start'>
+            <a routerLink="/login/forgot">Forgot your password?</a>
+            <div>
+                <span>Don't have a user?</span>
+                <a routerLink="/login/signup">Sign up</a>
+            </div>
+        </div>
+        <br/>
+
+        <div class="form-group">
+            <div class="alert alert-danger" role="alert" *ngIf="loginError">
+                <strong>Error</strong> - {{loginError}}
+            </div>
+        </div>
+
+        <br/>
+        <!-- <div><code>Received message: {{lastMessage}}</code></div> -->
+        <mat-expansion-panel>
+            <mat-expansion-panel-header>
+                <mat-panel-title>
+                    Development links
+                </mat-panel-title>
+                <!-- <mat-panel-description>
+                    Type your name and age
+                </mat-panel-description> -->
+            </mat-expansion-panel-header>
+
+            <div class='mat-subheading-2'>
+                Deeplinks
+            </div>
+            <div>
+                <a routerLink="/home">Home</a>
+            </div>
+            <div>
+                <a routerLink="/admin/teams">Admin Teams</a>
+            </div>
+            <div>
+                <a routerLink='/admin/teams/user/5'>Admim Teams - user details</a>
+            </div>
+            <div>
+                <a routerLink="/holidays/view/year/2017">My hoidays</a>
+            </div>
+
+            <br/>
+            <div class='mat-subheading-2'>
+                Development documentation
+            </div>
+            <div>
+                <a href="https://material.angular.io/components" target="_new">angular.material.io</a>
+            </div>
+            <div>
+                <a href="https://github.com/angular/flex-layout/wiki/Declarative-API-Overview" target="_new">angular.flex-layout</a>
+            </div>
+            <div>
+                <a href="https://material.io/icons/" target="_new">material.icons</a>
+            </div>
+
+        </mat-expansion-panel>
+    </form>
+</div>

@@ -1,0 +1,348 @@
+<h1 mat-dialog-title>
+    <span *ngIf='user.id'>Edit user</span>
+    <span *ngIf='!user.id'>Add user</span>
+</h1>
+<div mat-dialog-content>
+    <div class='modal-navigator'>
+        <div class='modal-navigator-item selected' [ngClass]='{"selected": page == 0}' (click)='page = 0'>
+            User details
+        </div>
+        <div class='modal-navigator-item' [ngClass]='{"selected": page == 1}' (click)='page = 1'>
+            Team
+        </div>
+        <div class='modal-navigator-item' [ngClass]='{"selected": page == 2}' (click)='page = 2'>
+            Rules
+        </div>
+    </div>
+
+    <div class=''>
+        <!-- <code><pre>{{userDetailsForm.value | json}}</pre></code> -->
+        <form novalidate (ngSubmit)="next()" #udf='ngForm'>
+            <!-- <code><pre>{{user | json}}</pre></code> -->
+            <!-- <div>{{udf.value | json}}</div> -->
+            <!-- first page -->
+            <div [hidden]='page !== 0' fxLayout='column' fxLayoutAlign='start stretch'>
+                <daysonapp-image-file-selector [(image)]='user.imageUrl' text='Upload image' [showHelp]='false'>
+                </daysonapp-image-file-selector>
+
+
+                <mat-form-field>
+                    <input matInput name="firstName" required maxlength="50" placeholder="First name" autocomplete="off" autofocus [(ngModel)]='user.firstName'
+                        #firstName='ngModel'>
+                    <mat-error>
+                        <div *ngIf='firstName.errors?.required'>First name is required</div>
+                        <div *ngIf='firstName.errors?.maxlength'>Length be maximum 50 characters long</div>
+                    </mat-error>
+                    <br/>
+                    <div>#firstName: {{firstName.value}}</div>
+                    <div>user.firstName: {{user.firstName}}</div>
+                </mat-form-field>
+
+                <mat-form-field>
+                    <input matInput name="middleName" maxlength="50" placeholder="Middle name" autocomplete="off" [(ngModel)]='user.middleName'
+                        #middleName='ngModel'>
+                    <mat-error>
+                        <div *ngIf='middleName.errors?.maxlength'>Length be maximum 50 characters long</div>
+                    </mat-error>
+                </mat-form-field>
+
+                <mat-form-field>
+                    <input matInput name="lastName" maxlength="50" placeholder="Last name" required autocomplete="off" [(ngModel)]='user.lastName'
+                        #lastName='ngModel'>
+                    <mat-error>
+                        <div *ngIf='lastName.errors?.required'>Last name is required</div>
+                        <div *ngIf='lastName.errors?.maxlength'>Length be maximum 50 characters long</div>
+                    </mat-error>
+                </mat-form-field>
+
+                <mat-form-field>
+                    <input matInput name="email" email maxlength="50" placeholder="Email address" autocomplete="off" [(ngModel)]='user.email' #email='ngModel'>
+                    <mat-error>
+                        <div *ngIf='email.errors?.required'>Email address is required</div>
+                        <div *ngIf='email.errors?.email'>You must enter a valid email</div>
+                        <div *ngIf='email.errors?.maxlength'>Length be maximum 50 characters long</div>
+                    </mat-error>
+                </mat-form-field>
+
+                <mat-form-field>
+                    <input matInput name="phone" tel maxlength="50" required placeholder="Phone number" autocomplete="off" [(ngModel)]='user.phone'
+                        #phone='REPLACE_WITH_YOUR_VALUE'>
+                    <mat-error>
+                        <div *ngIf='phone.errors?.required'>Telephone is required</div>
+                        <div *ngIf='phone.errors?.maxlength'>Length be maximum 50 characters long</div>
+                    </mat-error>
+                </mat-form-field>
+            </div>
+            <!-- page 0 -->
+
+
+            <div [hidden]='page !== 1' class='layout column align-stretch'>
+                <mat-form-field>
+                    <mat-select name='accountType' placeholder="User Type" [(ngModel)]='user.type'>
+                        <mat-option [value]="1">User</mat-option>
+                        <mat-option [value]="2">Administrator</mat-option>
+                    </mat-select>
+                </mat-form-field>
+
+                <mat-form-field>
+                    <input matInput name="jobTitle" required maxlength="50" placeholder="Job title" autocomplete="off" [(ngModel)]='user.jobTitle'
+                        #jobTitle='ngModel'>
+                    <mat-error>
+                        <div *ngIf='jobTitle.errors?.required'>Job title is required</div>
+                        <div *ngIf='jobTitle.errors?.maxlength'>Length be maximum 50 characters long</div>
+                    </mat-error>
+                </mat-form-field>
+
+                <mat-form-field>
+                    <mat-select name='teamId' placeholder="Team" [(ngModel)]='user.teamId' (selectionChange)='teamChanged($event)'>
+                        <mat-option [value]="team.id" *ngFor='let team of teams'>{{team.name}}</mat-option>
+                    </mat-select>
+                </mat-form-field>
+    
+                <mat-form-field>
+                    <mat-select name='approverId' placeholder="Manager" [(ngModel)]='user.approverId'>
+                        <mat-option [value]='""' *ngIf='approvers?.length === 0'>No approvers in selected team yet</mat-option>
+                        <mat-option [value]="approver.id" *ngFor='let approver of approvers'>
+                            <span>{{approver.firstName}}</span>
+                            <span>{{approver.middleName}}</span>
+                            <span>{{approver.lastName}}</span>
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field>
+
+                <br/>
+                <mat-checkbox color='primary' name='hasApprovalRights' [(ngModel)]='user.isApprover'>Holiday approval rights?</mat-checkbox>
+                <div class='form-comment'>If selected, you will be able to choose this user as a holiday approver for members of their team</div>
+            </div>
+            <!-- page 1 -->
+
+
+            <div [hidden]='page !== 2' class='layout column align-stretch'>
+                    <div class='days-label'>Open days</div>
+                    <div class='day-selections'>
+                        <div class='day-selection' fxLayout='row'>
+                            <div class='day-name'>Monday</div>
+                            <mat-slide-toggle color='primary' name='{{"monday"}}' [(ngModel)]="user.rules.workingDays.monday">
+                                {{user.rules.workingDays.monday ? "Open" : "Closed"}}
+                            </mat-slide-toggle>
+                        </div>
+                        <div class='day-selection' fxLayout='row'>
+                            <div class='day-name'>Tuesday</div>
+                            <mat-slide-toggle color='primary' name='{{"tuesday"}}' [(ngModel)]="user.rules.workingDays.tuesday">
+                                {{user.rules.workingDays.tuesday ? "Open" : "Closed"}}
+                            </mat-slide-toggle>
+                        </div>
+                        <div class='day-selection' fxLayout='row'>
+                            <div class='day-name'>Wednesday</div>
+                            <mat-slide-toggle color='primary' name='{{"wednesday"}}' [(ngModel)]="user.rules.workingDays.wednesday">
+                                {{user.rules.workingDays.wednesday ? "Open" : "Closed"}}
+                            </mat-slide-toggle>
+                        </div>
+                        <div class='day-selection' fxLayout='row'>
+                            <div class='day-name'>Thursday</div>
+                            <mat-slide-toggle color='primary' name='{{"thursday"}}' [(ngModel)]="user.rules.workingDays.thursday">
+                                {{user.rules.workingDays.thursday ? "Open" : "Closed"}}
+                            </mat-slide-toggle>
+                        </div>
+                        <div class='day-selection' fxLayout='row'>
+                            <div class='day-name'>Friday</div>
+                            <mat-slide-toggle color='primary' name='{{"friday"}}' [(ngModel)]="user.rules.workingDays.friday">
+                                {{user.rules.workingDays.friday ? "Open" : "Closed"}}
+                            </mat-slide-toggle>
+                        </div>
+                        <div class='day-selection' fxLayout='row'>
+                            <div class='day-name'>Saturday</div>
+                            <mat-slide-toggle color='primary' name='{{"saturday"}}' [(ngModel)]="user.rules.workingDays.saturday">
+                                {{user.rules.workingDays.saturday ? "Open" : "Closed"}}
+                            </mat-slide-toggle>
+                        </div>
+                        <div class='day-selection' fxLayout='row'>
+                            <div class='day-name'>Sunday</div>
+                            <mat-slide-toggle color='primary' name='{{"sunday"}}' [(ngModel)]="user.rules.workingDays.sunday">
+                                {{user.rules.workingDays.sunday ? "Open" : "Closed"}}
+                            </mat-slide-toggle>
+                        </div>
+                    </div>
+
+
+                <mat-form-field>
+                    <mat-select name='holidayEntitlement' placeholder="Yearly allowance" [(ngModel)]='user.rules.holidayEntitlement'>
+                        <mat-option [value]="00" >Nothing</mat-option>
+                        <mat-option [value]="01" >1 day</mat-option>
+                        <mat-option [value]="02" >2 days</mat-option>
+                        <mat-option [value]="03" >3 days</mat-option>
+                        <mat-option [value]="04" >4 days</mat-option>
+                        <mat-option [value]="05" >5 days</mat-option>
+                        <mat-option [value]="06" >6 days</mat-option>
+                        <mat-option [value]="07" >7 days</mat-option>
+                        <mat-option [value]="08" >8 days</mat-option>
+                        <mat-option [value]="09" >9 days</mat-option>
+                        <mat-option [value]="10" >10 days</mat-option>
+                        <mat-option [value]="11" >11 days</mat-option>
+                        <mat-option [value]="12" >12 days</mat-option>
+                        <mat-option [value]="13" >13 days</mat-option>
+                        <mat-option [value]="14" >14 days</mat-option>
+                        <mat-option [value]="15" >15 days</mat-option>
+                        <mat-option [value]="16" >16 days</mat-option>
+                        <mat-option [value]="17" >17 days</mat-option>
+                        <mat-option [value]="18" >18 days</mat-option>
+                        <mat-option [value]="19" >19 days</mat-option>
+                        <mat-option [value]="20" >20 days</mat-option>
+                        <mat-option [value]="21" >21 days</mat-option>
+                        <mat-option [value]="22" >22 days</mat-option>
+                        <mat-option [value]="23" >23 days</mat-option>
+                        <mat-option [value]="24" >24 days</mat-option>
+                        <mat-option [value]="25" >25 days</mat-option>
+                        <mat-option [value]="26" >26 days</mat-option>
+                        <mat-option [value]="27" >27 days</mat-option>
+                        <mat-option [value]="28" >28 days</mat-option>
+                        <mat-option [value]="29" >29 days</mat-option>
+                        <mat-option [value]="30" >30 days</mat-option>
+                        <mat-option [value]="31" >31 days</mat-option>
+                        <mat-option [value]="32" >32 days</mat-option>
+                        <mat-option [value]="33" >33 days</mat-option>
+                        <mat-option [value]="34" >34 days</mat-option>
+                        <mat-option [value]="35" >35 days</mat-option>
+                    </mat-select>
+                </mat-form-field>
+
+                <mat-form-field>
+                    <mat-select name='maxDaysCarriedOverNextYear' placeholder="Number of days user can carry to the next year" [(ngModel)]='user.rules.maxDaysCarriedOverNextYear'>
+                        <mat-option [value]="00" >Nothing</mat-option>
+                        <mat-option [value]="01" >1 day</mat-option>
+                        <mat-option [value]="02" >2 days</mat-option>
+                        <mat-option [value]="03" >3 days</mat-option>
+                        <mat-option [value]="04" >4 days</mat-option>
+                        <mat-option [value]="05" >5 days</mat-option>
+                        <mat-option [value]="06" >6 days</mat-option>
+                        <mat-option [value]="07" >7 days</mat-option>
+                        <mat-option [value]="08" >8 days</mat-option>
+                        <mat-option [value]="09" >9 days</mat-option>
+                        <mat-option [value]="10" >10 days</mat-option>
+                        <mat-option [value]="11" >11 days</mat-option>
+                        <mat-option [value]="12" >12 days</mat-option>
+                        <mat-option [value]="13" >13 days</mat-option>
+                        <mat-option [value]="14" >14 days</mat-option>
+                        <mat-option [value]="15" >15 days</mat-option>
+                        <mat-option [value]="16" >16 days</mat-option>
+                        <mat-option [value]="17" >17 days</mat-option>
+                        <mat-option [value]="18" >18 days</mat-option>
+                        <mat-option [value]="19" >19 days</mat-option>
+                        <mat-option [value]="20" >20 days</mat-option>
+                        <mat-option [value]="21" >21 days</mat-option>
+                        <mat-option [value]="22" >22 days</mat-option>
+                        <mat-option [value]="23" >23 days</mat-option>
+                        <mat-option [value]="24" >24 days</mat-option>
+                        <mat-option [value]="25" >25 days</mat-option>
+                        <mat-option [value]="26" >26 days</mat-option>
+                        <mat-option [value]="27" >27 days</mat-option>
+                        <mat-option [value]="28" >28 days</mat-option>
+                        <mat-option [value]="29" >29 days</mat-option>
+                        <mat-option [value]="30" >30 days</mat-option>
+                        <mat-option [value]="31" >31 days</mat-option>
+                        <mat-option [value]="32" >32 days</mat-option>
+                        <mat-option [value]="33" >33 days</mat-option>
+                        <mat-option [value]="34" >34 days</mat-option>
+                        <mat-option [value]="35" >35 days</mat-option>
+                    </mat-select>
+                </mat-form-field>
+
+                <mat-form-field>
+                    <mat-select name='minDaysAdvanceNoticeHolidays' placeholder="Minimum holiday notice" [(ngModel)]='user.rules.minDaysAdvanceNoticeHolidays'>
+                        <mat-option [value]="00" >Nothing</mat-option>
+                        <mat-option [value]="01" >1 day</mat-option>
+                        <mat-option [value]="02" >2 days</mat-option>
+                        <mat-option [value]="03" >3 days</mat-option>
+                        <mat-option [value]="04" >4 days</mat-option>
+                        <mat-option [value]="05" >5 days</mat-option>
+                        <mat-option [value]="06" >6 days</mat-option>
+                        <mat-option [value]="07" >7 days</mat-option>
+                        <mat-option [value]="08" >8 days</mat-option>
+                        <mat-option [value]="09" >9 days</mat-option>
+                        <mat-option [value]="10" >10 days</mat-option>
+                        <mat-option [value]="11" >11 days</mat-option>
+                        <mat-option [value]="12" >12 days</mat-option>
+                        <mat-option [value]="13" >13 days</mat-option>
+                        <mat-option [value]="14" >14 days</mat-option>
+                        <mat-option [value]="15" >15 days</mat-option>
+                        <mat-option [value]="16" >16 days</mat-option>
+                        <mat-option [value]="17" >17 days</mat-option>
+                        <mat-option [value]="18" >18 days</mat-option>
+                        <mat-option [value]="19" >19 days</mat-option>
+                        <mat-option [value]="20" >20 days</mat-option>
+                        <mat-option [value]="21" >21 days</mat-option>
+                        <mat-option [value]="22" >22 days</mat-option>
+                        <mat-option [value]="23" >23 days</mat-option>
+                        <mat-option [value]="24" >24 days</mat-option>
+                        <mat-option [value]="25" >25 days</mat-option>
+                        <mat-option [value]="26" >26 days</mat-option>
+                        <mat-option [value]="27" >27 days</mat-option>
+                        <mat-option [value]="28" >28 days</mat-option>
+                        <mat-option [value]="29" >29 days</mat-option>
+                        <mat-option [value]="30" >30 days</mat-option>
+                        <mat-option [value]="31" >31 days</mat-option>
+                        <mat-option [value]="32" >32 days</mat-option>
+                        <mat-option [value]="33" >33 days</mat-option>
+                        <mat-option [value]="34" >34 days</mat-option>
+                        <mat-option [value]="35" >35 days</mat-option>
+                    </mat-select>
+                </mat-form-field>
+
+                <mat-form-field>
+                    <mat-select name='maxConsecutiveDaysOff' placeholder="Maximum consecutive days off" [(ngModel)]='user.rules.maxConsecutiveDaysOff'>
+                        <mat-option [value]="00" >Nothing</mat-option>
+                        <mat-option [value]="01" >1 day</mat-option>
+                        <mat-option [value]="02" >2 days</mat-option>
+                        <mat-option [value]="03" >3 days</mat-option>
+                        <mat-option [value]="04" >4 days</mat-option>
+                        <mat-option [value]="05" >5 days</mat-option>
+                        <mat-option [value]="06" >6 days</mat-option>
+                        <mat-option [value]="07" >7 days</mat-option>
+                        <mat-option [value]="08" >8 days</mat-option>
+                        <mat-option [value]="09" >9 days</mat-option>
+                        <mat-option [value]="10" >10 days</mat-option>
+                        <mat-option [value]="11" >11 days</mat-option>
+                        <mat-option [value]="12" >12 days</mat-option>
+                        <mat-option [value]="13" >13 days</mat-option>
+                        <mat-option [value]="14" >14 days</mat-option>
+                        <mat-option [value]="15" >15 days</mat-option>
+                        <mat-option [value]="16" >16 days</mat-option>
+                        <mat-option [value]="17" >17 days</mat-option>
+                        <mat-option [value]="18" >18 days</mat-option>
+                        <mat-option [value]="19" >19 days</mat-option>
+                        <mat-option [value]="20" >20 days</mat-option>
+                        <mat-option [value]="21" >21 days</mat-option>
+                        <mat-option [value]="22" >22 days</mat-option>
+                        <mat-option [value]="23" >23 days</mat-option>
+                        <mat-option [value]="24" >24 days</mat-option>
+                        <mat-option [value]="25" >25 days</mat-option>
+                        <mat-option [value]="26" >26 days</mat-option>
+                        <mat-option [value]="27" >27 days</mat-option>
+                        <mat-option [value]="28" >28 days</mat-option>
+                        <mat-option [value]="29" >29 days</mat-option>
+                        <mat-option [value]="30" >30 days</mat-option>
+                        <mat-option [value]="31" >31 days</mat-option>
+                        <mat-option [value]="32" >32 days</mat-option>
+                        <mat-option [value]="33" >33 days</mat-option>
+                        <mat-option [value]="34" >34 days</mat-option>
+                        <mat-option [value]="35" >35 days</mat-option>
+                    </mat-select>
+                </mat-form-field>
+
+            </div>
+
+            <!-- page 2 -->
+
+        </form>
+    </div>
+</div>
+
+<div mat-dialog-actions class='layout row justify-end'>
+    <button mat-button [mat-dialog-close]="'dialog cancelled'" tabindex="2">Cancel</button>
+    <button mat-raised-button (click)="prev()" *ngIf='page > 0'>Previous</button>
+    <button mat-raised-button (click)="next()" *ngIf='page < 2'>Next</button>
+    <button mat-raised-button color="primary" [disabled]='!canSave(udf)' (click)="create(udf)" *ngIf='page == 2'>Create</button>
+</div>
+
+<daysonapp-loading-splash transparent='true' *ngIf='loading'>
+    </daysonapp-loading-splash>

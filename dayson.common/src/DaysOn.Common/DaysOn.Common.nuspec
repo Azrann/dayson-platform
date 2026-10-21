@@ -1,0 +1,14 @@
+<?xml version="1.0"?>
+<package >
+  <metadata>
+    <id>$id$</id>
+    <version>1.0.83</version>
+    <title>$title$</title>
+    <authors>Alberto Mijoler Moreno</authors>
+    <owners>Alberto Mijoler Moreno</owners>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>Common library for DaysOn project</description>
+    <releaseNotes></releaseNotes>
+    <copyright>Copyright 2016</copyright>
+  </metadata>
+</package>

@@ -1,0 +1,36 @@
+<div class='title'>
+    Select a user
+</div>
+<div class='subtitle'>
+    In order to view holidays
+</div>
+
+<div class='team-container' *ngFor='let teamGroup of teamGroups'>
+    <div class='team' *ngIf='teamGroup.users.length'>
+        <div class='team-name'>
+            {{teamGroup.team.name}}
+        </div>
+        <div 
+            class='team-user' 
+            *ngFor='let user of teamGroup.users' 
+            [ngClass]='{"selected": selectedDict[user.id]}' 
+            (click)='switchUser(user)'
+            [ngStyle]='{"background-color": user.color, "color": user.contrastColor}'
+            fxLayout='row'
+            fxLayoutAlign='start center'
+        >
+            <i class='material-icons user-color-icon {{userColors[user.id]}}' [ngClass]='{"white-color": !userColors[user.id]}'>lens</i>
+            <div class='user-name' fxFlex>{{user.firstName}} {{user.middleName}} {{user.lastName}}</div>
+            <button
+                class='add-holiday'
+                type='button'
+                (click)='addHoliday($event, user)'
+            >
+                <i class='material-icons'>add</i>
+            </button>
+        </div>
+    </div>
+</div>
+
+<daysonapp-loading-splash transparent='true' *ngIf='loading'>
+</daysonapp-loading-splash>

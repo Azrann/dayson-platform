@@ -1,0 +1,42 @@
+@import '~css/theme.scss';
+
+.request {
+    padding: 10px 0;
+    border-bottom: 1px solid #eee;
+    cursor: pointer;
+    font-size: 12px;
+}
+
+// .request.hovered {
+//     background-color: #ffffaa;
+// }
+
+.check-green {
+    color: #0dcdb8;
+}
+
+.requested .status-ball {
+    color: $holiday-requested-color;
+}
+
+.accepted .status-ball {
+    color: $holiday-accepted-color;
+}
+
+.rejected .status-ball {
+    color: $holiday-rejected-color;
+}
+
+.cancelled .status-ball {
+    color: $holiday-cancelled-color;
+}
+
+.day-amount {
+    margin: 0 8px;
+}
+
+@media (max-width: 1000px) {
+    .day-amount {
+        display: none;
+    }
+}

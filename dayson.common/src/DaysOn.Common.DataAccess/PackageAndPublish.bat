@@ -1,0 +1,2 @@
+C:\SourceCode\nuget.exe pack "C:\SourceCode\dayson.common\src\DaysOn.Common.DataAccess\DaysOn.Common.DataAccess.csproj" -Prop Configuration=Release
+xcopy /Y C:\SourceCode\dayson.common\src\DaysOn.Common.DataAccess\*.nupkg C:\SourceCode\MyPackages

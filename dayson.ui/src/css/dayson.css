@@ -1,0 +1,24 @@
+.dayson-app-tile {
+  text-align: center;
+  background-color: #5B6E8A;
+  color: #ffffff;
+  box-shadow: 0px -10px 15px 10px #000;
+  display: block;
+}
+
+.dayson-app-tile:hover {
+  color: #ffffff;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.dayson-app-tile h1 {
+  margin: 0;
+  padding: 20px;
+  text-shadow: 1px 1px 2px #444;
+}
+
+.dayson-login-registernow {
+  margin-top: 40px;
+  font-size: 12px;
+}

@@ -1,0 +1,44 @@
+// Import theming functions
+@import '~@angular/material/theming';
+@import '~css/theme.scss';
+
+.menu-container {
+    padding: 0;
+}
+
+.menu-title {
+    padding: 0 60px;
+    font-size: 28px;
+    text-align: center;
+}
+
+.menu-group {
+    margin: 40px 0 0;
+}
+
+.group-title {
+    padding: 0 40px;
+    margin-bottom: 10px;
+}
+
+.menu-item {
+    border-top: 1px solid #f4f7f9;
+    background: #fff;
+    padding: 15px 40px;
+    min-width: 320px;
+    max-width: 100%;
+    cursor: pointer;
+
+    &.selected {
+        background-color: mat-color($candy-app-primary);
+        color: white;
+    }
+}
+
+.menu-item:last-child {
+    border-bottom: 1px solid #f4f7f9;
+}
+
+.menu-item.logout {
+    color: mat-color($candy-app-primary);
+}

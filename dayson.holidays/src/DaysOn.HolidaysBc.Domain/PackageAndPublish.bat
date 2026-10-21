@@ -1,0 +1,2 @@
+C:\SourceCode\nuget.exe pack "C:\SourceCode\dayson.holidays\src\DaysOn.HolidaysBc.Domain\DaysOn.HolidaysBc.BoundedContext.csproj" -Prop Configuration=Release
+xcopy /Y C:\SourceCode\dayson.holidays\src\DaysOn.HolidaysBc.Domain\*.nupkg C:\SourceCode\MyPackages

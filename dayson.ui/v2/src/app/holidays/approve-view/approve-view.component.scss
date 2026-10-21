@@ -1,0 +1,45 @@
+.information-section:first-child {
+    padding-top: 20px;
+}
+
+.dates {
+    .label {
+        display: inline-block;
+        opacity: 0.75;
+        min-width: 60px;
+        text-align: right;
+        padding: 2px;
+    }
+
+    .date {
+        font-weight: bold;
+    }
+
+}
+
+.amount-part {
+    .amount {
+        font-weight: bold;
+        margin: 2px 0;
+    }
+
+    .description {
+        margin: 2px 0;
+        opacity: 0.75;
+    }
+}
+
+.buttons {
+    button {
+        margin: 4px 10px;
+    }
+}
+
+.deny-button {
+    background: #bbb;
+    color: white;
+}
+
+.dates {
+    white-space: nowrap;
+}

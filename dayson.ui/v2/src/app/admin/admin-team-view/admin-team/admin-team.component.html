@@ -1,0 +1,81 @@
+<div class='information-section' fxLayout='column' fxLayoutAlign='start stretch'>
+    <div class='information-title' fxLayout='row'>
+        <div fxFlex>
+            <div class='title-text'>
+                {{team.name}}
+            </div>
+            <div class='title-subtext'>
+                {{team.teamMembers.length}} members
+            </div>
+
+        </div>
+
+        <button mat-mini-fab color='primary' (click)='editTeam()'>
+            <mat-icon class="md-24 material-icons" aria-label="Add new Team member">edit</mat-icon>
+        </button>
+        <button mat-mini-fab color='primary' (click)='addMember()'>
+            <mat-icon class="md-24 material-icons" aria-label="Add new Team member">add_circle</mat-icon>
+        </button>
+
+    </div>
+
+    <table class='standard-table'>
+        <thead>
+            <tr>
+                <th>
+                    Team member
+                </th>
+                <th>
+                    Email
+                </th>
+                <th class='centered-cell'>
+                    Can approve holidays
+                </th>
+                <th>
+                    <span class='status-header'>
+                        Status
+                    </span>
+                </th>
+                <th class='action-col'>
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor='let member of team.teamMembers; trackBy: getMemberId'>
+                <td (click)='openUserDetails(member)' class='clickable'>
+                    <div class='user-name-col'>
+                        <img [src]='member.imageUrl' class='member-image' *ngIf='member.pictureUrl' />
+                        <div class='member-image material-icons' *ngIf='!member.pictureUrl'>account_circle</div>
+                        <div class='user-name'>
+                            <span>{{member.firstname}}</span>
+                            <span>{{member.middlename}}</span>
+                            <span>{{member.lastname}}</span>
+                            <div class='user-type'>{{member.jobTitle}}</div>
+                        </div>
+                    </div>
+                </td>
+                <td (click)='openUserDetails(member)' class='clickable'>
+                    <a href='mailto:{{member.email}}' class='theme-primary-color user-email'>{{member.email}}</a>
+                </td>
+                <td class='centered-cell'>
+                    <mat-icon color='primary' class='material-icons' *ngIf='member.hasApprovalRights'>done</mat-icon>
+                </td>
+                <td>
+                    <span *ngIf='member.status === 1' class='status-sent'>{{member.statusText}}</span>
+                    <button class="status-dropdown-button" *ngIf='member.status !== 1' (click)='changeUserStatus($event, member)'>
+                        <div class='status-control' [ngClass]='{"inactive": member.status === 0, "active": member.status === 2}'>
+                            <div class='status-color'></div>
+                            <div class='status-name' *ngIf='member.status === 0'>Inactive</div>
+                            <div class='status-name' *ngIf='member.status === 2'>Active</div>
+                            <i class="fa fa-chevron-down" aria-hidden="true"></i>
+                        </div>
+                    </button>
+
+                </td>
+                <td class='action-col clickable' (click)='openUserDetails(member)'>
+                    <mat-icon class='material-icons'>mode_edit</mat-icon>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>

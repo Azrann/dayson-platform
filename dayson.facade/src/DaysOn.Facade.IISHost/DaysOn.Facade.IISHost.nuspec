@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+<package >
+  <metadata>
+    <id>DaysOn.Facade.IISHost</id>
+    <version>1.0.0.0</version>
+    <authors>DaysOn Team</authors>
+    <owners>Bookatable</owners>
+    <projectUrl>https://bitbucket.org/Bookatable/neptune.facade</projectUrl>
+    <description>The deployment package of DaysOn.Facade</description>
+  </metadata>
+  <files>
+    <file src="bin\*.dll" target="bin" />
+    <file src="bin\DaysOn.Facade.xml" target="bin" />
+    <file src="Web.*config" target="" />
+  </files>
+</package>

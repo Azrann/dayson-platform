@@ -1,0 +1,33 @@
+@import '../../../css/theme.scss';
+
+mat-form-field {
+    width: inherit;    
+}
+
+.details-header {
+        .mat-subheading-1 {
+            margin-top: -20px;
+            opacity: 0.5;
+        }
+}
+
+::ng-deep daysonapp-image-file-selector .image-contents .text {
+    font-size: 80px;
+}
+
+.day-selections {
+    margin-bottom: 8px;
+}
+
+.day-selection {
+    margin-bottom: 4px;
+}
+
+.day-name {
+    width: 150px;
+}
+
+.days-label {
+    font-size: 12px;
+    color: #bbb;
+}

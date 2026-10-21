@@ -1,0 +1,39 @@
+:host {
+    margin: 0 0 0 -15px;
+    width: 250px;
+}
+
+.center {
+    text-align: center;
+}
+
+.title {
+    font-size: 26px;
+    margin: 20px 0;
+}
+
+.subtitle {
+    font-size: 14px;
+    margin-bottom: 20px;
+}
+
+.remaining .big {
+    font-size: 26px;
+}
+
+.request-title {
+    padding-bottom: 10px;
+    margin: 40px 0 0;
+    font-weight: bold;
+    border-bottom: 1px solid #eee;
+}
+
+.add-button {
+    width: 100%;
+}
+
+@media (max-width: 1000px) {
+    :host {
+        width: 220px;
+    }
+}

@@ -1,0 +1,40 @@
+<html>
+  <head>
+    <title>DaysOn Login</title>
+    <!-- build:css css/dayson.lib.min.css -->
+    <link rel="stylesheet" type="text/css" href="bower_components/bootstrap/dist/css/bootstrap.css">
+    <link rel="stylesheet" type="text/css" href="bower_components/bootstrap/dist/css/bootstrap-theme.css">
+    <!-- /build -->
+    <!-- build:css css/dayson.login.min.css -->
+    <link rel="stylesheet" type="text/css" href="css/dayson.css">
+    <link rel="stylesheet" type="text/css" href="css/dayson.login.css">
+    <!-- /build -->
+  </head>
+  <body ng-app='login-app'>
+    <ng-view></ng-view>
+  </body>
+
+  <!-- libraries -->
+  <!-- build:js js/dayson.lib.min.js -->
+  <script src='bower_components/angular/angular.js'></script>
+  <script src='bower_components/angular-route/angular-route.js'></script>
+  <script src='bower_components/angular-messages/angular-messages.js'></script>
+  <script src='bower_components/angular-translate/angular-translate.js'></script>
+  <script src='bower_components/angular-ui/build/angular-ui.js'></script>
+  <!-- /build -->
+  <!-- build:js js/dayson.login.min.js -->
+  <script src='app/dayson-common/dayson-common.js'></script>
+  <script src='app/dayson-common/services/authService.js'></script>
+  <script src='app/dayson-common/directives/equals.js'></script>
+
+  <script src='app/login-app/loginApp.js'></script>
+  <script src='app/login-app/views/forgot/forgot.js'></script>
+  <script src='app/login-app/views/forgot/forgotController.js'></script>
+  <script src='app/login-app/views/login/login.js'></script>
+  <script src='app/login-app/views/login/loginController.js'></script>
+  <script src='app/login-app/views/register/register.js'></script>
+  <script src='app/login-app/views/register/registerController.js'></script>
+  <script src='app/login-app/views/resetPassword/resetPassword.js'></script>
+  <script src='app/login-app/views/resetPassword/resetPasswordController.js'></script>
+  <!-- /build -->
+</html>

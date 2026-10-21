@@ -1,0 +1,33 @@
+@import './../../../css/theme.scss';
+
+.splash-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 10000;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background: $page-background;
+
+    &.fullscreen {
+        position: fixed;
+    }
+    
+    &.transparent {
+        background: rgba(255, 255, 255, 0.75);
+    }
+
+    .loader {
+        display: block;
+    }
+    
+    .loader-text {
+        margin-top: 10px;
+        font-size: 24px;
+        opacity: 0.3;
+    }
+}

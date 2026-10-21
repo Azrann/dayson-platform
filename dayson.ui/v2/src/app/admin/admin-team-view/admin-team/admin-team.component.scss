@@ -1,0 +1,60 @@
+.action-col {
+    max-width: 20px;
+    font-size: 16px;
+    color: #aaa;
+}
+
+.status-sent,
+.status-header {
+    padding: 0 20px;
+}
+
+.status-dropdown-button {
+    background: none;
+    border: none;
+    outline: none;
+    cursor: pointer;
+}
+
+.status-dropdown-button:after {
+    content: none;
+}
+
+.status-control {
+    border: 1px solid #ddd;
+    display: flex;
+    flex-direction: row;
+    padding: 10px 14px;
+    border-radius: 30px;
+    align-items: center;
+    min-width: 90px;
+}
+
+.status-color {
+    width: 20px;
+    height: 20px;
+    background: black;
+    border-radius: 20px;
+}
+
+.inactive .status-color {
+    background: #dd2200;
+}
+
+.active .status-color {
+    background: #42bd41;
+}
+
+.status-name {
+    flex: 1;
+    padding: 0 10px;
+}
+
+.status-control i {
+    color: #aaa;
+}
+.team-edit-button {
+    margin-left: 8px;
+    font-size: 16px;
+    color: #aaa;
+}

@@ -1,0 +1,11 @@
+@import './theme.scss';
+
+.dayson-container {
+    border: 1px solid $container-border;
+    background: $container-background;
+    
+    & > .dayson-content {
+        padding: 20px;
+    }
+}
+

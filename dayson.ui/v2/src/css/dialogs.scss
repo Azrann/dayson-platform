@@ -1,0 +1,40 @@
+@import './theme.scss';
+
+.modal-navigator {
+    border: 2px solid #039be5;
+    border-radius: 40px;
+    background: #fff;
+    display: flex;
+    margin-bottom: 20px;
+
+    .modal-navigator-item {
+        color: #555;
+        padding: 8px 20px;
+        border: 2px solid #fff;
+        flex: 1;
+        text-align: center;
+        transition: background 0.2s ease-in-out;
+        cursor: pointer;
+        outline: none;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        &:hover {
+            background: #e1f6ff;
+        }
+        
+        &.selected {
+            background: #039be5;
+            color: #fff;
+        }
+
+        &:first-of-type {
+            border-radius: 50px 0 0 50px;
+        }
+
+        &:last-of-type {
+            border-radius: 0 50px 50px 0;
+        }
+    }
+}

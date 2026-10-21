@@ -1,0 +1,16 @@
+<div *ngIf='user'>
+    <button mat-icon-button [disabled]='!showMenu' (click)='menuClicked($event)'>
+        <mat-icon class="material-icons md-24" aria-label="Menu">menu</mat-icon>
+    </button>
+    <div class='spacer'>
+        <ng-content></ng-content>
+    </div>
+    
+    <a class='user-name' (click)='goToUser()'>
+        <span>{{user?.firstName}} {{user?.lastName}}</span>
+    </a>
+    <div class='user-icon' [ngStyle]='{"background-image": "url(" + user?.imageUrl + ")"}' (click)='goToUser()' *ngIf='user.pictureUrl'></div>
+    <div class='user-icon material-icons' (click)='goToUser()' *ngIf='!user.pictureUrl'>
+        account_circle
+    </div>
+</div>

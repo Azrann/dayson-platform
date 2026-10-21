@@ -1,0 +1,53 @@
+:host > div {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding: 0 40px;
+    
+    background: white;
+    border-bottom: 1px solid #ddd;
+    height: 50px;
+}
+
+.spacer {
+    margin-left: 10px;
+    flex: 1;
+}
+
+.user-name {
+    cursor: pointer;
+}
+
+.user-icon {
+    width: 40px;
+    height: 40px;
+    border-radius: 20px;
+    vertical-align: middle;
+    margin: 0 10px 0 20px;
+    border: 1px solid #ddd;
+    background-size: cover;
+    background-position: center;
+    cursor: pointer;
+    box-shadow: 0 0 10px 0 #ddd;
+    font-size: 38px;
+    color: #aaa;
+}
+
+.user-name i {
+    margin-left: 6px;
+}
+
+@media (max-width: 700px) {
+    :host { 
+        padding: 0 8px;
+        font-size: 14px;
+    }
+
+    .menu-button {
+        margin: 0 8px;
+    }
+
+    .user-name {
+        display: none;
+    }
+}

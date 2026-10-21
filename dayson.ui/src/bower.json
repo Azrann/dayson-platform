@@ -1,0 +1,27 @@
+{
+  "name": "dayson.ui",
+  "description": "client code",
+  "main": "index.js",
+  "authors": [
+    "Fernando Bravo <user@example.invalid>"
+  ],
+  "license": "ISC",
+  "moduleType": [],
+  "homepage": "",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "jquery": "~2.1.4",
+    "angular": "~1.4.7",
+    "angular-route": "~1.4.7",
+    "angular-messages": "~1.4.7",
+    "angular-translate": "~2.8.1",
+    "bootstrap": "~3.3.5",
+    "angular-ui": "~0.4.0"
+  }
+}

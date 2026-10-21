@@ -1,0 +1,63 @@
+.calendar-day-number {
+    padding: 15px 0 4px;
+
+    &.no-request {
+        padding-bottom: 15px;
+    }
+}
+
+.holiday-request {
+    min-width: 50px;
+    height: 12px;
+    margin: 0 0 4px;
+    position: relative;
+
+    .request-section {
+        height: 12px;
+        position: absolute;
+        left: 0;
+        right: 0;
+        top: 0;
+        bottom: 0;
+
+        &.request-start {
+            width: 20px;
+            left: auto;
+            border-radius: 10px 0 0 10px;
+        }
+
+        &.request-end {
+            width: 20px;
+            right: auto;
+            border-radius: 0 10px 10px 0;
+        }
+    }
+}
+
+:host-context(.small-calendar) {
+    .calendar-day-number {
+        padding: 4px 0 2px;
+    
+        &.no-request {
+            padding-bottom: 4px;
+        }
+    }
+    
+    .holiday-request {
+        min-width: 20px;
+        height: 6px;
+        margin: 0 0 1px;
+    
+        .request-section {
+            height: 6px;
+    
+            &.request-start {
+                width: 8px;
+            }
+    
+            &.request-end {
+                width: 8px;
+            }
+        }
+    }
+}

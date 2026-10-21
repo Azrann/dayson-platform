@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <script src="lib/angular.min.js"></script>
+    <script src="lib/jquery-1.10.2.min.js"></script>
+    <script src="js/daysonlogapisApp.js"></script>
+    <script src="lib/bootstrap.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="content/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="content/Site.css">
+    <title>daysonlogapis</title>
+    <meta charset="utf-8"/>
+</head>
+<body>
+    <div ng-app="daysonlogapiApp">
+        <div ng-controller="daysonlogapiCtrl">
+            <div class="container">
+                <button ng-click="error()">Errors</button>
+                <div class="row header recuadro">
+                    <div class="col-md-1">Id</div>
+                    <div class="col-md-1">Level</div> 
+                    <div class="col-md-2">Date</div>
+                    <div class="col-md-5">Message</div>
+                    <div class="col-md-2">Exception</div>
+                    <div class="col-md-1">Logger</div>
+                </div>
+                <div ng-repeat="logItem in data" ng-class="logItem.Level == 'ERROR' ? 'row danger recuadro' : 'row recuadro'">
+                    <div class="col-md-1">{{logItem.Id}}</div>
+                    <div class="col-md-1">{{logItem.Level}}</div>
+                    <div class="col-md-2">{{logItem.DateString}}</div>
+                    <div class="col-md-5">{{logItem.Message}}</div>
+                    <div class="col-md-2">{{logItem.Exception}}</div>
+                    <div class="col-md-1">{{logItem.Logger}}</div>
+                </div>
+            </div>
+        </div>
+      </div>
+</body>
+</html>

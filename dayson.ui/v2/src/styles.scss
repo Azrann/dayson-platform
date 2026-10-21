@@ -1,0 +1,18 @@
+/* You can add global styles to this file, and also import other style files */
+
+// @import url("../node_modules/bootstrap/dist/css/bootstrap.min.css");
+// @import "~@angular/material/prebuilt-themes/indigo-pink.css";
+@import url("../node_modules/loaders.css/loaders.min.css");
+// @import url("css/font-awesome.css");
+
+@import "css/page.css";
+@import "css/theme.scss";
+@import "css/structure.scss";
+
+@import "css/forms.scss";
+@import "css/navigation-bar.scss";
+
+@import "css/dialogs.scss";
+@import "css/flex.scss";
+
+@import "css/holiday-colors.scss";

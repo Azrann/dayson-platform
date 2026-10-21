@@ -1,0 +1,95 @@
+daysonapp-root .mat-drawer-container {
+    background: #f8f8f8;
+}
+
+.view-container {
+    &>daysonapp-navigation-bar {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 50px;
+        z-index: 100;
+        box-shadow: 0 0 20px 0 #ddd;
+    }
+
+    &>mat-sidenav-container {
+        position: absolute;
+        top: 50px;
+        bottom: 0;
+        left: 0;
+        right: 0;
+    }
+
+    .view-contents {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        flex: 1;
+        overflow: auto;
+        align-items: center;
+        
+
+        &>*:last-child {
+            display: block;
+            width: calc(100% - 60px);
+            max-width: 1200px;
+            box-shadow: 4px 4px 20px 0 #ddd;
+            margin-bottom: 40px;
+
+            padding: 20px 40px 30px;
+
+            // border: 1px solid #eee;
+            // border-top: none;
+            // border-bottom: none;
+             background: white;
+
+            @media(max-width: 768px) {
+                & {
+                    width: 100%;
+                    padding: 20px 20px 30px;
+                }
+            }
+        }
+
+        &.no-padding>*:last-child {
+            padding: 0;
+        }
+    }
+}
+// .view-container {
+//     display: flex;
+//     flex-direction: column;
+//     height: 100%;
+//     align-items: stretch;
+
+//     .view-contents {
+//         display: flex;
+//         flex-direction: column;
+//         flex: 1;
+//         overflow: auto;
+//         align-items: center;
+
+//         &>*:last-child {
+//             display: block;
+//             width: calc(100% - 20px);
+//             max-width: 1000px;
+
+//             padding: 20px 40px 30px;
+
+//             // border: 1px solid #eee;
+//             // border-top: none;
+//             // border-bottom: none;
+//              background: white;
+
+//             @media(max-width: 768px) {
+//                 & {
+//                     width: 100%;
+//                     padding: 20px 20px 30px;
+//                 }
+//             }
+//         }
+//     }
+
+// }
+

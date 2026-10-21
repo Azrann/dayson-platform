@@ -1,0 +1,18 @@
+.year-title {
+    margin-bottom: 10px;
+    font-weight: bold;
+    text-align: center;
+}
+
+.year-button.selected{
+    font-weight: bold;
+}
+
+.year-col {
+    margin: 20px -10px 0 0px
+}
+
+.calendar-container {
+    margin-right: -15px;
+    padding: 10px 0px;
+}

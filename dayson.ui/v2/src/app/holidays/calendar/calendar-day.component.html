@@ -1,0 +1,16 @@
+<div class='calendar-day-number' [ngClass]='{"no-request": day.holidayDayRequests.length === 0}'>
+    {{day.day}}
+</div>
+<div class='holiday-request {{dr?.css}}' *ngFor='let dr of day.holidayDayRequests'>
+    <!-- {{dr?.holidaySet.id}} -->
+
+    <div class='request-section request-through {{dr?.middleColor}}' *ngIf='dr?.middleColor' (click)='middleClicked(dr)'>
+
+    </div>
+    <div class='request-section request-start {{dr?.startColor}}' *ngIf='dr?.startColor && !dr?.middleColor' (click)='startClicked(dr)'>
+
+    </div>
+    <div class='request-section request-end {{dr?.endColor}}' *ngIf='dr?.endColor && !dr?.middleColor' (click)='endClicked(dr)'>
+         
+    </div>
+</div>

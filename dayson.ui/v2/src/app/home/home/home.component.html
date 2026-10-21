@@ -1,0 +1,15 @@
+<div class='view-container'>
+    <daysonapp-navigation-bar (toggle)='sidenav.toggle()'>
+        <div class='title'>Home</div>
+    </daysonapp-navigation-bar>
+
+    <mat-sidenav-container class="example-sidenav-fab-container">
+        <mat-sidenav #sidenav mode="over" opened="false">
+            <daysonapp-navigation-menu (toggle)='sidenav.toggle()'>
+            </daysonapp-navigation-menu>
+        </mat-sidenav>
+        <div class='view-contents'>
+            <router-outlet></router-outlet>
+        </div>
+    </mat-sidenav-container>
+</div>

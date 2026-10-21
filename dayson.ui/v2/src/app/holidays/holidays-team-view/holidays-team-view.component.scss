@@ -1,0 +1,15 @@
+.selector-panel {
+    display: block;
+    width: 250px;
+    margin-left: -15px;
+}
+
+.calendar-container {
+    margin-right: -15px;
+}
+
+@media (max-width: 1000px) {
+    .selector-panel {
+        width: 220px;
+    }
+}

@@ -1,0 +1,30 @@
+<form novalidate #teamForm='ngForm'>
+    <h1 mat-dialog-title *ngIf='team'>
+        <span *ngIf='team?.id'>Edit team</span>
+        <span *ngIf='!team?.id'>Add team</span>
+    </h1>
+    <div mat-dialog-content *ngIf='team'>
+            <div fxLayout='column' fxLayoutAlign='start stretch'>
+                <mat-form-field>
+                    <input matInput name="teamName" required maxlength="50" placeholder="Team name" autocomplete="off" autofocus [ngModel]='team.name'
+                        #teamName='ngModel'>
+                    <mat-error>
+                        <div *ngIf='teamName.errors?.required'>Team name is required</div>
+                        <div *ngIf='teamName.errors?.maxlength'>Length be maximum 50 characters long</div>
+                    </mat-error>
+                </mat-form-field>
+            </div>
+            <!-- <div>{{teamForm.value | json}}</div> -->
+        </div>
+
+    <div mat-dialog-actions class='layout row justify-end'>
+        <button mat-button [mat-dialog-close]="false">
+            <span>Cancel</span>
+        </button>
+        <button mat-raised-button color='primary' (click)='save(teamForm.value)' [disabled]='teamForm.invalid || loading'>
+            <span>Save</span>
+        </button>
+    </div>
+    <mat-progress-bar mode="query" *ngIf='loading'></mat-progress-bar>
+    
+</form>

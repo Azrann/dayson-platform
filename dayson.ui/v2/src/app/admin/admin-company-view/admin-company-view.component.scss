@@ -1,0 +1,37 @@
+form {
+    margin: 10px;
+}
+
+.mat-form-field {
+    width: inherit;    
+}
+
+mat-form-field, .day-selections {
+    margin-bottom: 24px;
+}
+
+mat-checkbox {
+    margin-bottom: 10px;
+
+    ::ng-deep .mat-checkbox-label {
+        font-size: 14px;
+    }
+}
+
+.company-name input {
+    font-size: 28px;
+    font-weight: lighter;
+}
+
+.day-selection {
+    margin-bottom: 4px;
+}
+
+.day-name {
+    width: 150px;
+}
+
+.days-label {
+    font-size: 12px;
+    color: #bbb;
+}

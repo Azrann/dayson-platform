@@ -1,0 +1,110 @@
+<form novalidate #cform='ngForm' fxLayout='column' fxLayoutAlign='start stretch' *ngIf='company'>
+    <div fxFlex='unset'>
+        <div class='information-container' fxLayout='column' fxLayoutAlign="start stretch">
+            <div class='information-title'>
+                <div class='title-text'>
+                    ABOUT YOUR COMPANY
+                </div>
+
+                <button mat-mini-fab color='primary' [disabled]='cform.invalid || (!daysChanged && company.countryId === cform.value.countryId && company.openDuringBankHolidays === cform.value.openDuringBankHolidays)'
+                    *ngIf='!company.hackAskForComplete' (click)='saveBasicInfo(cform.value)'>
+                    <mat-icon class="md-24 material-icons" aria-label="Save team info">save</mat-icon>
+                </button>
+            </div>
+
+            <!-- <mat-form-field class='company-name'>
+                <input matInput name="name" maxlength="50" required placeholder="Company name" autocomplete="off" autofocus [ngModel]='company.name'
+                    #name='ngModel'>
+                <mat-error>
+                    <div *ngIf='name.errors?.required'>Company name is required</div>
+                    <div *ngIf='name.errors?.maxlength'>Length be maximum 50 characters long</div>
+                </mat-error>
+            </mat-form-field> -->
+
+            <div class='days-label'>Open days</div>
+            <div class='day-selections'>
+                <div class='day-selection' fxLayout='row' *ngFor='let day of days'>
+                    <div class='day-name'>{{day.day.name}}</div>
+                    <mat-slide-toggle color='primary' name='{{"day" + day.day.id}}' [(ngModel)]="day.open" (change)='daysChanged = true'>
+                        {{day.open ? "Open" : "Closed"}}
+                    </mat-slide-toggle>
+                </div>
+            </div>
+
+            <!-- <mat-form-field>
+                <mat-select name='sizeId' placeholder="Company size" [ngModel]='company.sizeId'>
+                    <mat-option [value]="csize.id" *ngFor='let csize of companySizes'>{{csize.name}}</mat-option>
+                </mat-select>
+            </mat-form-field> -->
+
+            <mat-form-field>
+                <mat-select name='countryId' placeholder="Country" [ngModel]='company.countryId'>
+                    <mat-option [value]="c.id" *ngFor='let c of companyCountries'>{{c.name}}</mat-option>
+                </mat-select>
+            </mat-form-field>
+
+            <mat-checkbox color='primary' name='openDuringBankHolidays' [ngModel]='company.openDuringBankHolidays'>Open during UK Bank Holidays</mat-checkbox>
+        </div>
+    </div>
+    <div fxFlex='unset'>
+        <div class='information-container' fxLayout='column' fxLayoutAlign="start stretch">
+            <div class='information-title' fxLayout='row'>
+                <div>
+                    <div class='title-text'>
+                        ABOUT HOLIDAYS
+                    </div>
+                    <div class='title-subtext'>
+                        These rules will be the defaults for every team member account. Each of these can be edited to suit individual team members.
+                    </div>
+                </div>
+                <button mat-mini-fab color='primary' 
+[disabled]='cform.invalid || (originalStartMonth === cform.value.startMonth && company.defaultHolidayAllowance === cform.value.defaultHolidayAllowance && company.defaultConsecutiveDays === cform.value.defaultConsecutiveDays && company.defaultNoticeDays === cform.value.defaultNoticeDays && company.defaultCarryAllowance === cform.value.defaultCarryAllowance)'
+                    *ngIf='!company.hackAskForComplete' (click)='saveHolidays(cform.value)'>
+                    <mat-icon class="md-24 material-icons" aria-label="Save team info">save</mat-icon>
+                </button>
+
+            </div>
+
+            <mat-form-field>
+                <mat-select name='startMonth' placeholder="When does your holiday year start?" [ngModel]='startMonth'>
+                    <mat-option [value]="sm.id" *ngFor='let sm of startMonths'>{{sm.name}}</mat-option>
+                </mat-select>
+            </mat-form-field>
+
+            <mat-form-field>
+                <mat-select name='defaultNumberOfHolidays' placeholder="Total number of holiday days for each team member" [ngModel]='company.holidayEntitlement'>
+                    <mat-option [value]="da" *ngFor='let da of dayAmounts'>{{da}} days</mat-option>
+                </mat-select>
+            </mat-form-field>
+
+            <mat-form-field>
+                <mat-select name='maxConsecutiveDaysOff' placeholder="Maximum consecutive holiday days a team member can book off" [ngModel]='company.maxConsecutiveDaysOff'>
+                    <mat-option [value]="da" *ngFor='let da of dayAmounts'>{{da}} days</mat-option>
+                </mat-select>
+            </mat-form-field>
+
+            <mat-form-field>
+                <mat-select name='minDaysAdvanceNoticeHolidays' placeholder="Minimum days notice for requesting holidays" [ngModel]='company.minDaysAdvanceNoticeHolidays'>
+                    <mat-option [value]="da" *ngFor='let da of dayAmounts'>{{da}} days</mat-option>
+                </mat-select>
+            </mat-form-field>
+
+            <mat-form-field>
+                <mat-select name='maxDaysCarriedOverNextYear' placeholder="Max. number of days a team member can carry to the next year"
+                    [ngModel]='company.maxDaysCarriedOverNextYear'>
+                    <mat-option [value]="da" *ngFor='let da of dayAmounts'>{{da}} days</mat-option>
+                </mat-select>
+            </mat-form-field>
+        </div>
+    </div>
+    <div fxLayout='row' fxLayoutAlign='center center'>
+        <button mat-raised-button color="primary" type='button' [disabled]='cform.invalid' (click)='confirmRegistration(cform.value)'>
+            <span *ngIf='company.hackAskForComplete'>Confirm registration</span>
+            <span>Save company data</span>
+        </button>
+    </div>
+
+</form>
+
+<daysonapp-loading-splash transparent='true' *ngIf='loading'>
+</daysonapp-loading-splash>
