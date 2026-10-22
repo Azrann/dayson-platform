@@ -1,29 +1,31 @@
+**Languages:** [English](Readme.md) · [Español](README.es.md)
+
 # dayson.facade
 
-Fachada API de DaysOn/HrPlan: ofrece operaciones orientadas a la interfaz y coordina llamadas a autenticación, empresas y vacaciones.
+DaysOn/HrPlan API facade: exposes interface-oriented operations and coordinates calls to authentication, company, and leave services.
 
-Documentación basada en los archivos locales revisados el 21 de octubre de 2026.
+Documentation based on local files reviewed on 21 October 2026.
 
 <!-- BEGIN project-context -->
 
-## Antigüedad y evidencia
+## Historical dates and evidence
 
-**Año de referencia de esta versión: 2018.** Se toma el archivo de código o configuración más reciente con una fecha histórica recuperable; no se ha podido confirmar la fecha exacta de creación.
+**Reference year for this version: 2018.** This uses the most recent source or configuration file with a recoverable historical date; the exact creation date could not be confirmed.
 
-- Archivo más reciente datable: **2018-06-30**, [`dayson.facade/src/DaysOn.Facade/packages.config`](src/DaysOn.Facade/packages.config); fecha del commit que modificó el archivo, recuperada del Git local.
-- Primer registro del repositorio Git original que contiene este código: **2015-07-12**. Puede corresponder a una importación; no prueba cuándo se escribió por primera vez.
-- Dependencia fechada más reciente entre las comprobadas: [Castle.Core 4.3.1](https://www.nuget.org/packages/Castle.Core/4.3.1), publicada el **2018-06-20** (versión declarada), en [`dayson.facade/src/DaysOn.Facade/packages.config`](src/DaysOn.Facade/packages.config).
-- Referencia adicional: destino `v4.6` en [`dayson.facade/src/DaysOn.Facade/DaysOn.Facade.csproj`](src/DaysOn.Facade/DaysOn.Facade.csproj); su [versión estable se publicó el 2015-07-20](https://dotnet.microsoft.com/en-us/platform/support/policy/dotnet-framework). Es una pista de generación tecnológica; pudieron existir versiones preliminares anteriores.
+- Most recent datable file: **2018-06-30**, [`dayson.facade/src/DaysOn.Facade/packages.config`](src/DaysOn.Facade/packages.config); date of the commit modifying the file, recovered from local Git history.
+- First record in the original Git repository containing this code: **2015-07-12**. This may be an import and does not establish when the code was first written.
+- Most recently published dependency among those checked: [Castle.Core 4.3.1](https://www.nuget.org/packages/Castle.Core/4.3.1), published on **2018-06-20** (declared version), in [`dayson.facade/src/DaysOn.Facade/packages.config`](src/DaysOn.Facade/packages.config).
+- Additional reference: target `v4.6` in [`dayson.facade/src/DaysOn.Facade/DaysOn.Facade.csproj`](src/DaysOn.Facade/DaysOn.Facade.csproj); its [stable release was published on 2015-07-20](https://dotnet.microsoft.com/en-us/platform/support/policy/dotnet-framework). This indicates the technology generation; earlier preview releases may have existed.
 
-La publicación de una dependencia sitúa la configuración conservada a partir de esa versión, si la referencia es válida. Una actualización de paquetes puede ser mucho más reciente que el inicio del proyecto. No se restauraron paquetes para comprobarlo.
+A dependency's publication places the preserved configuration at or after that version, if the reference is valid. Package updates may be much newer than the project's beginnings. Packages were not restored to verify this.
 
-Se descartaron las marcas de tiempo de la copia de octubre de 2026 y los documentos generados durante esta revisión. Las fechas recuperables no garantizan que no existan cambios posteriores sin datar.
+October 2026 copy timestamps and documents generated during this review were excluded. Recoverable dates do not guarantee that there are no later, undated changes.
 
-## Por qué merece la pena mirarlo
+## Why this is worth exploring
 
-La fachada traduce las necesidades del cliente web en llamadas a identidad, empresas y vacaciones. Seguir un controlador permite entender la función de una API de coordinación y la diferencia entre exponer una operación y resolver sus reglas de negocio.
+The facade translates web client needs into identity, company, and leave service calls. Following a controller explains a coordination API's role and the difference between exposing an operation and implementing its business rules.
 
-Puntos de entrada al código:
+Code entry points:
 
 - [`src/DaysOn.Facade/Controllers/Factory.cs`](src/DaysOn.Facade/Controllers/Factory.cs)
 - [`src/DaysOn.Facade/Controllers/HolidayController.cs`](src/DaysOn.Facade/Controllers/HolidayController.cs)
@@ -31,52 +33,52 @@ Puntos de entrada al código:
 
 <!-- END project-context -->
 
-## Estructura y responsabilidades
+## Structure and responsibilities
 
-| Ruta | Responsabilidad |
+| Path | Responsibility |
 | --- | --- |
-| `src/DaysOn.Facade/` | Controladores de autenticación, empresa, empleados, vacaciones, reglas, aprobadores y vistas web. |
-| `src/DaysOn.Facade.Common/` | Clientes HTTP de los servicios, DTOs y utilidades de integración. |
-| `src/DaysOn.Facade.Models/` | Modelos consumibles por otros proyectos. |
-| `src/DaysOn.Facade.IISHost/` | Host IIS. |
-| `src/DaysOn.Facade.Tests.Acceptance/, src/DaysOn.Facade.Tests.Integration/` | Pruebas de coordinación de servicios. |
+| `src/DaysOn.Facade/` | Controllers for authentication, companies, employees, leave, rules, approvers, and web views. |
+| `src/DaysOn.Facade.Common/` | Service HTTP clients, DTOs, and integration utilities. |
+| `src/DaysOn.Facade.Models/` | Models consumed by other projects. |
+| `src/DaysOn.Facade.IISHost/` | IIS host. |
+| `src/DaysOn.Facade.Tests.Acceptance/, src/DaysOn.Facade.Tests.Integration/` | Service coordination tests. |
 
-## Tecnologías y requisitos
+## Technologies and requirements
 
-Windows, Visual Studio/MSBuild, paquetes NuGet y herramientas del .NET Framework declarado por cada proyecto. Los servicios HTTP usan Web API/OWIN y los hosts IIS requieren IIS Express o IIS. Hay dependencias DaysOn.* propias cuya disponibilidad en los feeds originales no se ha comprobado.
+Windows, Visual Studio/MSBuild, NuGet packages, and tools for the .NET Framework version declared by each project. HTTP services use Web API/OWIN, and IIS hosts require IIS Express or IIS. Availability of the internal DaysOn.* dependencies in their original feeds has not been checked.
 
-Los servicios y bases de datos necesarios dependen de la configuración privada del componente.
+Required services and databases depend on the component's private configuration.
 
-Destinos leídos de los proyectos: `v4.6`.
+Targets read from project files: `v4.6`.
 
-## Preparación y arranque
+## Setup and startup
 
-Restaurar src/DaysOn.Facade.sln y seleccionar DaysOn.Facade.IISHost para IIS Express. Configurar primero los servicios Auth, Company y Holidays y adaptar sus URLs base.
+Restore src/DaysOn.Facade.sln and select DaysOn.Facade.IISHost for IIS Express. Configure Auth, Company, and Holidays first and adjust their base URLs.
 
-Soluciones presentes: `src/DaysOn.Facade.sln`.
+Solutions present: `src/DaysOn.Facade.sln`.
 
-## Configuración e integraciones
+## Configuration and integrations
 
-Configurar URLs de los servicios, JWT y mensajería en los archivos de configuración y clientes. Las pruebas incluyen credenciales de acceso y tokens literales.
+Configure service URLs, JWT, and messaging in configuration files and clients. Tests include login credentials and literal tokens.
 
-## Relación con la aplicación DaysOn
+## Relationship to the DaysOn application
 
-Esta carpeta es un componente de DaysOn/HrPlan, dentro de una aplicación distribuida.
+This folder is a DaysOn/HrPlan component within a distributed application.
 
-- [dayson.auth](../dayson.auth/Readme.md): Identidad, tokens y cuentas.
-- [dayson.company](../dayson.company/Readme.md): Empresas, equipos y empleados.
-- [dayson.holidays](../dayson.holidays/Readme.md): Vacaciones, reglas, aprobaciones y saldos.
-- [dayson.ui](../dayson.ui/Readme.md): Frontend de la aplicación.
+- [dayson.auth](../dayson.auth/Readme.md): Identity, tokens, and accounts.
+- [dayson.company](../dayson.company/Readme.md): Companies, teams, and employees.
+- [dayson.holidays](../dayson.holidays/Readme.md): Leave, rules, approvals, and balances.
+- [dayson.ui](../dayson.ui/Readme.md): Application frontend.
 
-El [índice general](../README.md) incluye el mapa del conjunto. Las relaciones descritas proceden de controladores, clientes, contratos y configuración visibles; no se ha verificado su despliegue en ejecución.
+The [main index](../README.md) includes a map of the application. Relationships described here come from visible controllers, clients, contracts, and configuration; a running deployment has not been verified.
 
-## Estado de esta copia
+## Status of this copy
 
-Es el punto de integración principal para dayson.ui; su funcionamiento depende de que los servicios de dominio estén disponibles.
+This is the main integration point for dayson.ui; it depends on the domain services being available.
 
-La revisión fue estática: no se restauraron dependencias, no se compiló ni se ejecutaron aplicaciones o pruebas. Los comandos anteriores son instrucciones de preparación, no resultados de validación. Las versiones indicadas son las del código conservado.
+The review was static: dependencies were not restored, and applications and tests were neither built nor run. The commands above are setup instructions, not validation results. Listed versions describe the preserved code.
 
 
-## Copia pública
+## Public copy
 
-Las credenciales originales se han retirado o sustituido por `REPLACE_WITH_YOUR_VALUE`. Los datos locales, sesiones, certificados privados y perfiles de despliegue se omiten. Configurar servicios y credenciales propios antes de ejecutar. La compilación y el funcionamiento con servicios externos no se han validado.
+Original credentials have been removed or replaced with `REPLACE_WITH_YOUR_VALUE`. Local data, sessions, private certificates, and deployment profiles are omitted. Configure your own services and credentials before running. Building and operation with external services have not been validated.

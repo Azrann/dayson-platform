@@ -1,80 +1,82 @@
+**Languages:** [English](Readme.md) · [Español](README.es.md)
+
 # dayson.auth
 
-Servicio de identidad de DaysOn/HrPlan: registro, inicio de sesión, emisión de tokens, activación de cuentas, recuperación de contraseñas y asignación de roles relacionados con equipos.
+DaysOn/HrPlan identity service: registration, login, token issuance, account activation, password recovery, and team-related role assignment.
 
-Documentación basada en los archivos locales revisados el 21 de octubre de 2026.
+Documentation based on local files reviewed on 21 October 2026.
 
 <!-- BEGIN project-context -->
 
-## Antigüedad y evidencia
+## Historical dates and evidence
 
-**Año de referencia de esta versión: 2018.** Se toma el archivo de código o configuración más reciente con una fecha histórica recuperable; no se ha podido confirmar la fecha exacta de creación.
+**Reference year for this version: 2018.** This uses the most recent source or configuration file with a recoverable historical date; the exact creation date could not be confirmed.
 
-- Archivo más reciente datable: **2018-07-02**, [`dayson.auth/src/DaysOn.Auth.Web/Providers/CustomOAuthProvider.cs`](src/DaysOn.Auth.Web/Providers/CustomOAuthProvider.cs); fecha del commit que modificó el archivo, recuperada del Git local.
-- Primer registro del repositorio Git original que contiene este código: **2015-07-22**. Puede corresponder a una importación; no prueba cuándo se escribió por primera vez.
-- Dependencia fechada más reciente entre las comprobadas: [Castle.Core 4.3.1](https://www.nuget.org/packages/Castle.Core/4.3.1), publicada el **2018-06-20** (versión declarada), en [`dayson.auth/src/DaysOn.Auth.Acceptance/packages.config`](src/DaysOn.Auth.Acceptance/packages.config).
-- Referencia adicional: destino `v4.6` en [`dayson.auth/src/DaysOn.Auth.Acceptance/DaysOn.Auth.Acceptance.csproj`](src/DaysOn.Auth.Acceptance/DaysOn.Auth.Acceptance.csproj); su [versión estable se publicó el 2015-07-20](https://dotnet.microsoft.com/en-us/platform/support/policy/dotnet-framework). Es una pista de generación tecnológica; pudieron existir versiones preliminares anteriores.
+- Most recent datable file: **2018-07-02**, [`dayson.auth/src/DaysOn.Auth.Web/Providers/CustomOAuthProvider.cs`](src/DaysOn.Auth.Web/Providers/CustomOAuthProvider.cs); date of the commit modifying the file, recovered from local Git history.
+- First record in the original Git repository containing this code: **2015-07-22**. This may be an import and does not establish when the code was first written.
+- Most recently published dependency among those checked: [Castle.Core 4.3.1](https://www.nuget.org/packages/Castle.Core/4.3.1), published on **2018-06-20** (declared version), in [`dayson.auth/src/DaysOn.Auth.Acceptance/packages.config`](src/DaysOn.Auth.Acceptance/packages.config).
+- Additional reference: target `v4.6` in [`dayson.auth/src/DaysOn.Auth.Acceptance/DaysOn.Auth.Acceptance.csproj`](src/DaysOn.Auth.Acceptance/DaysOn.Auth.Acceptance.csproj); its [stable release was published on 2015-07-20](https://dotnet.microsoft.com/en-us/platform/support/policy/dotnet-framework). This indicates the technology generation; earlier preview releases may have existed.
 
-La publicación de una dependencia sitúa la configuración conservada a partir de esa versión, si la referencia es válida. Una actualización de paquetes puede ser mucho más reciente que el inicio del proyecto. No se restauraron paquetes para comprobarlo.
+A dependency's publication places the preserved configuration at or after that version, if the reference is valid. Package updates may be much newer than the project's beginnings. Packages were not restored to verify this.
 
-Se descartaron las marcas de tiempo de la copia de octubre de 2026 y los documentos generados durante esta revisión. Las fechas recuperables no garantizan que no existan cambios posteriores sin datar.
+October 2026 copy timestamps and documents generated during this review were excluded. Recoverable dates do not guarantee that there are no later, undated changes.
 
-## Por qué merece la pena mirarlo
+## Why this is worth exploring
 
-Los cambios de equipos y responsables se traducen en cambios de roles, además del registro y la emisión de tokens. Esa relación entre eventos de negocio y permisos ofrece un caso concreto de identidad dentro de una aplicación distribuida.
+Changes to teams and managers translate into role changes, alongside registration and token issuance. That relationship between business events and permissions is a concrete identity example within a distributed application.
 
-Puntos de entrada al código:
+Code entry points:
 
 - [`src/DaysOn.Auth.Domain/Events/CheckAddManagerRoleEventHandler.cs`](src/DaysOn.Auth.Domain/Events/CheckAddManagerRoleEventHandler.cs)
 - [`src/DaysOn.Auth.Domain/Application/AuthService.cs`](src/DaysOn.Auth.Domain/Application/AuthService.cs)
 
 <!-- END project-context -->
 
-## Estructura y responsabilidades
+## Structure and responsibilities
 
-| Ruta | Responsabilidad |
+| Path | Responsibility |
 | --- | --- |
-| `src/DaysOn.Auth.Web/` | Controladores Auth, Password y Version, configuración OWIN y validadores. |
-| `src/DaysOn.Auth.Domain/` | Usuarios ASP.NET Identity, servicios de autenticación, activación, equipos y eventos. |
-| `src/DaysOn.Auth.IISHost/` | Host IIS y configuración del servicio. |
-| `src/DaysOn.Auth.Models/` | Comandos y modelos compartidos con clientes. |
-| `src/DaysOn.Auth.Test/, src/DaysOn.Auth.Test.Integration/, src/DaysOn.Auth.Acceptance/` | Pruebas de distintos niveles. |
+| `src/DaysOn.Auth.Web/` | Auth, Password, and Version controllers, OWIN configuration, and validators. |
+| `src/DaysOn.Auth.Domain/` | ASP.NET Identity users, authentication, activation, team services, and events. |
+| `src/DaysOn.Auth.IISHost/` | IIS host and service configuration. |
+| `src/DaysOn.Auth.Models/` | Commands and models shared with clients. |
+| `src/DaysOn.Auth.Test/, src/DaysOn.Auth.Test.Integration/, src/DaysOn.Auth.Acceptance/` | Tests at different levels. |
 
-## Tecnologías y requisitos
+## Technologies and requirements
 
-Windows, Visual Studio/MSBuild, paquetes NuGet y herramientas del .NET Framework declarado por cada proyecto. Los servicios HTTP usan Web API/OWIN y los hosts IIS requieren IIS Express o IIS. Hay dependencias DaysOn.* propias cuya disponibilidad en los feeds originales no se ha comprobado.
+Windows, Visual Studio/MSBuild, NuGet packages, and tools for the .NET Framework version declared by each project. HTTP services use Web API/OWIN, and IIS hosts require IIS Express or IIS. Availability of the internal DaysOn.* dependencies in their original feeds has not been checked.
 
-Los servicios y bases de datos necesarios dependen de la configuración privada del componente.
+Required services and databases depend on the component's private configuration.
 
-Destinos leídos de los proyectos: `v4.5.2`, `v4.6`.
+Targets read from project files: `v4.5.2`, `v4.6`.
 
-## Preparación y arranque
+## Setup and startup
 
-Seleccionar DaysOn.Auth.IISHost en Visual Studio/IIS Express después de restaurar src/DaysOn.Auth.sln y preparar las bases de identidad y NoSQL.
+Select DaysOn.Auth.IISHost in Visual Studio/IIS Express after restoring src/DaysOn.Auth.sln and preparing the identity and NoSQL databases.
 
-Soluciones presentes: `src/DaysOn.Auth.sln`.
+Solutions present: `src/DaysOn.Auth.sln`.
 
-## Configuración e integraciones
+## Configuration and integrations
 
-AuthDB y NoSQL, JWT.Issuer/JWT.Audience/JWT.Secret, AuthServer, Service Bus y claves PubNub. La configuración JWT debe ser coherente con los demás servicios.
+AuthDB and NoSQL, JWT.Issuer/JWT.Audience/JWT.Secret, AuthServer, Service Bus, and PubNub keys. JWT configuration must be consistent with the other services.
 
-## Relación con la aplicación DaysOn
+## Relationship to the DaysOn application
 
-Esta carpeta es un componente de DaysOn/HrPlan, dentro de una aplicación distribuida.
+This folder is a DaysOn/HrPlan component within a distributed application.
 
-- [dayson.common](../dayson.common/Readme.md): Bibliotecas, contratos, datos y mensajería compartidos.
-- [dayson.company](../dayson.company/Readme.md): Empresas, equipos y empleados.
-- [dayson.facade](../dayson.facade/Readme.md): API de coordinación para clientes web.
+- [dayson.common](../dayson.common/Readme.md): Shared libraries, contracts, data, and messaging.
+- [dayson.company](../dayson.company/Readme.md): Companies, teams, and employees.
+- [dayson.facade](../dayson.facade/Readme.md): Coordination API for web clients.
 
-El [índice general](../README.md) incluye el mapa del conjunto. Las relaciones descritas proceden de controladores, clientes, contratos y configuración visibles; no se ha verificado su despliegue en ejecución.
+The [main index](../README.md) includes a map of the application. Relationships described here come from visible controllers, clients, contracts, and configuration; a running deployment has not been verified.
 
-## Estado de esta copia
+## Status of this copy
 
-Parte de una aplicación única con los otros proyectos dayson.*. Los logs y las pruebas también contienen material sensible.
+Part of a single application with the other dayson.* projects. Logs and tests also contain sensitive material.
 
-La revisión fue estática: no se restauraron dependencias, no se compiló ni se ejecutaron aplicaciones o pruebas. Los comandos anteriores son instrucciones de preparación, no resultados de validación. Las versiones indicadas son las del código conservado.
+The review was static: dependencies were not restored, and applications and tests were neither built nor run. The commands above are setup instructions, not validation results. Listed versions describe the preserved code.
 
 
-## Copia pública
+## Public copy
 
-Las credenciales originales se han retirado o sustituido por `REPLACE_WITH_YOUR_VALUE`. Los datos locales, sesiones, certificados privados y perfiles de despliegue se omiten. Configurar servicios y credenciales propios antes de ejecutar. La compilación y el funcionamiento con servicios externos no se han validado.
+Original credentials have been removed or replaced with `REPLACE_WITH_YOUR_VALUE`. Local data, sessions, private certificates, and deployment profiles are omitted. Configure your own services and credentials before running. Building and operation with external services have not been validated.

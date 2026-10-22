@@ -1,76 +1,78 @@
+**Languages:** [English](Readme.md) · [Español](README.es.md)
+
 # dayson.logapi
 
-API de consulta y limpieza de registros de DaysOn, con almacenamiento SQL y acceso mediante Dapper.
+DaysOn log querying and cleanup API, using SQL storage and Dapper data access.
 
-Documentación basada en los archivos locales revisados el 21 de octubre de 2026.
+Documentation based on local files reviewed on 21 October 2026.
 
 <!-- BEGIN project-context -->
 
-## Antigüedad y evidencia
+## Historical dates and evidence
 
-**Año de referencia de esta versión: 2016.** Se toma el archivo de código o configuración más reciente con una fecha histórica recuperable; no se ha podido confirmar la fecha exacta de creación.
+**Reference year for this version: 2016.** This uses the most recent source or configuration file with a recoverable historical date; the exact creation date could not be confirmed.
 
-- Archivo más reciente datable: **2016-12-18**, [`dayson.logapi/src/DaysOn.Log.IISHost/Web.config`](src/DaysOn.Log.IISHost/Web.config); fecha del commit que modificó el archivo, recuperada del Git local.
-- Primer registro del repositorio Git original que contiene este código: **2016-11-20**. Puede corresponder a una importación; no prueba cuándo se escribió por primera vez.
-- Dependencia fechada más reciente entre las comprobadas: [Dapper 1.50.2](https://www.nuget.org/packages/Dapper/1.50.2), publicada el **2016-07-22** (versión declarada), en [`dayson.logapi/src/DaysOn.Log.Web/packages.config`](src/DaysOn.Log.Web/packages.config).
-- Referencia adicional: destino `v4.6` en [`dayson.logapi/src/DaysOn.Log.IISHost/DaysOn.Log.IISHost.csproj`](src/DaysOn.Log.IISHost/DaysOn.Log.IISHost.csproj); su [versión estable se publicó el 2015-07-20](https://dotnet.microsoft.com/en-us/platform/support/policy/dotnet-framework). Es una pista de generación tecnológica; pudieron existir versiones preliminares anteriores.
+- Most recent datable file: **2016-12-18**, [`dayson.logapi/src/DaysOn.Log.IISHost/Web.config`](src/DaysOn.Log.IISHost/Web.config); date of the commit modifying the file, recovered from local Git history.
+- First record in the original Git repository containing this code: **2016-11-20**. This may be an import and does not establish when the code was first written.
+- Most recently published dependency among those checked: [Dapper 1.50.2](https://www.nuget.org/packages/Dapper/1.50.2), published on **2016-07-22** (declared version), in [`dayson.logapi/src/DaysOn.Log.Web/packages.config`](src/DaysOn.Log.Web/packages.config).
+- Additional reference: target `v4.6` in [`dayson.logapi/src/DaysOn.Log.IISHost/DaysOn.Log.IISHost.csproj`](src/DaysOn.Log.IISHost/DaysOn.Log.IISHost.csproj); its [stable release was published on 2015-07-20](https://dotnet.microsoft.com/en-us/platform/support/policy/dotnet-framework). This indicates the technology generation; earlier preview releases may have existed.
 
-La publicación de una dependencia sitúa la configuración conservada a partir de esa versión, si la referencia es válida. Una actualización de paquetes puede ser mucho más reciente que el inicio del proyecto. No se restauraron paquetes para comprobarlo.
+A dependency's publication places the preserved configuration at or after that version, if the reference is valid. Package updates may be much newer than the project's beginnings. Packages were not restored to verify this.
 
-Se descartaron las marcas de tiempo de la copia de octubre de 2026 y los documentos generados durante esta revisión. Las fechas recuperables no garantizan que no existan cambios posteriores sin datar.
+October 2026 copy timestamps and documents generated during this review were excluded. Recoverable dates do not guarantee that there are no later, undated changes.
 
-## Por qué merece la pena mirarlo
+## Why this is worth exploring
 
-LogService concentra lectura de registros, selección de errores y limpieza mediante Dapper. Es útil como ejemplo compacto de una API de observabilidad con persistencia SQL y un cliente web independiente.
+LogService centralizes log reading, error selection, and cleanup through Dapper. It is a compact example of an observability API with SQL persistence and an independent web client.
 
-Puntos de entrada al código:
+Code entry points:
 
 - [`src/DaysOn.Log.Web/Services/LogService.cs`](src/DaysOn.Log.Web/Services/LogService.cs)
 - [`src/DaysOn.Log.Web/Controllers/HomeController.cs`](src/DaysOn.Log.Web/Controllers/HomeController.cs)
 
 <!-- END project-context -->
 
-## Estructura y responsabilidades
+## Structure and responsibilities
 
-| Ruta | Responsabilidad |
+| Path | Responsibility |
 | --- | --- |
-| `src/DaysOn.Log.Web/` | Web API/OWIN, controladores Home y Version y servicio LogService. |
-| `src/DaysOn.Log.Web/Services/LogService.cs` | Lista registros, filtra errores y limpia la tabla de logs. |
-| `src/DaysOn.Log.IISHost/` | Host IIS, configuración de conexión y perfiles de publicación. |
+| `src/DaysOn.Log.Web/` | Web API/OWIN, Home and Version controllers, and LogService. |
+| `src/DaysOn.Log.Web/Services/LogService.cs` | Lists logs, filters errors, and clears the log table. |
+| `src/DaysOn.Log.IISHost/` | IIS host, connection configuration, and publish profiles. |
 
-## Tecnologías y requisitos
+## Technologies and requirements
 
-Windows, Visual Studio/MSBuild, paquetes NuGet y herramientas del .NET Framework declarado por cada proyecto. Los servicios HTTP usan Web API/OWIN y los hosts IIS requieren IIS Express o IIS. Hay dependencias DaysOn.* propias cuya disponibilidad en los feeds originales no se ha comprobado.
+Windows, Visual Studio/MSBuild, NuGet packages, and tools for the .NET Framework version declared by each project. HTTP services use Web API/OWIN, and IIS hosts require IIS Express or IIS. Availability of the internal DaysOn.* dependencies in their original feeds has not been checked.
 
-Los servicios y bases de datos necesarios dependen de la configuración privada del componente.
+Required services and databases depend on the component's private configuration.
 
-Destinos leídos de los proyectos: `v4.6`.
+Targets read from project files: `v4.6`.
 
-## Preparación y arranque
+## Setup and startup
 
-Restaurar src/DaysOn.Log.IISHost.sln y seleccionar DaysOn.Log.IISHost en IIS Express. Preparar la base de registros y adaptar el cliente dayson.log.
+Restore src/DaysOn.Log.IISHost.sln and select DaysOn.Log.IISHost in IIS Express. Prepare the logging database and adapt the dayson.log client.
 
-Soluciones presentes: `src/DaysOn.Log.IISHost.sln`.
+Solutions present: `src/DaysOn.Log.IISHost.sln`.
 
-## Configuración e integraciones
+## Configuration and integrations
 
-dbConnection y otras cadenas SQL del Web.config del host. Los perfiles .pubxml.user pueden contener contraseñas cifradas vinculadas al usuario local.
+dbConnection and other SQL connection strings in the host's Web.config. .pubxml.user profiles may contain encrypted passwords tied to the local user.
 
-## Relación con la aplicación DaysOn
+## Relationship to the DaysOn application
 
-Esta carpeta es un componente de DaysOn/HrPlan, dentro de una aplicación distribuida.
+This folder is a DaysOn/HrPlan component within a distributed application.
 
-- [dayson.log](../dayson.log/Readme.md): Interfaz de consulta de logs.
+- [dayson.log](../dayson.log/Readme.md): Log viewing interface.
 
-El [índice general](../README.md) incluye el mapa del conjunto. Las relaciones descritas proceden de controladores, clientes, contratos y configuración visibles; no se ha verificado su despliegue en ejecución.
+The [main index](../README.md) includes a map of the application. Relationships described here come from visible controllers, clients, contracts, and configuration; a running deployment has not been verified.
 
-## Estado de esta copia
+## Status of this copy
 
-Revisar acceso a las operaciones de consulta y borrado antes de exponer este componente.
+Review access to query and deletion operations before exposing this component.
 
-La revisión fue estática: no se restauraron dependencias, no se compiló ni se ejecutaron aplicaciones o pruebas. Los comandos anteriores son instrucciones de preparación, no resultados de validación. Las versiones indicadas son las del código conservado.
+The review was static: dependencies were not restored, and applications and tests were neither built nor run. The commands above are setup instructions, not validation results. Listed versions describe the preserved code.
 
 
-## Copia pública
+## Public copy
 
-Las credenciales originales se han retirado o sustituido por `REPLACE_WITH_YOUR_VALUE`. Los datos locales, sesiones, certificados privados y perfiles de despliegue se omiten. Configurar servicios y credenciales propios antes de ejecutar. La compilación y el funcionamiento con servicios externos no se han validado.
+Original credentials have been removed or replaced with `REPLACE_WITH_YOUR_VALUE`. Local data, sessions, private certificates, and deployment profiles are omitted. Configure your own services and credentials before running. Building and operation with external services have not been validated.

@@ -1,28 +1,30 @@
+**Languages:** [English](Readme.md) · [Español](README.es.md)
+
 # dayson.ui
 
-Interfaz de DaysOn/HrPlan para autenticación, administración de empresas/equipos/empleados y consulta o aprobación de vacaciones. Incluye dos generaciones del frontend.
+DaysOn/HrPlan interface for authentication, company/team/employee administration, and leave viewing or approval. Includes two frontend generations.
 
-Documentación basada en los archivos locales revisados el 21 de octubre de 2026.
+Documentation based on local files reviewed on 21 October 2026.
 
 <!-- BEGIN project-context -->
 
-## Antigüedad y evidencia
+## Historical dates and evidence
 
-**Año de referencia de esta versión: 2018.** Se toma el archivo de código o configuración más reciente con una fecha histórica recuperable; no se ha podido confirmar la fecha exacta de creación.
+**Reference year for this version: 2018.** This uses the most recent source or configuration file with a recoverable historical date; the exact creation date could not be confirmed.
 
-- Archivo más reciente datable: **2018-06-24**, [`dayson.ui/v2/src/index.html`](v2/src/index.html); fecha del commit que modificó el archivo, recuperada del Git local.
-- Primer registro del repositorio Git original que contiene este código: **2015-10-19**. Puede corresponder a una importación; no prueba cuándo se escribió por primera vez.
-- Dependencia fechada más reciente entre las comprobadas: [@angular/core 5.2.10](https://www.npmjs.com/package/@angular/core/v/5.2.10), publicada el **2018-04-16** (versión fijada en el lockfile), en [`dayson.ui/v2/package.json`](v2/package.json). Fecha contrastada con la versión de [`dayson.ui/v2/package-lock.json`](v2/package-lock.json).
+- Most recent datable file: **2018-06-24**, [`dayson.ui/v2/src/index.html`](v2/src/index.html); date of the commit modifying the file, recovered from local Git history.
+- First record in the original Git repository containing this code: **2015-10-19**. This may be an import and does not establish when the code was first written.
+- Most recently published dependency among those checked: [@angular/core 5.2.10](https://www.npmjs.com/package/@angular/core/v/5.2.10), published on **2018-04-16** (version pinned in the lockfile), in [`dayson.ui/v2/package.json`](v2/package.json). Cross-checked against the version in [`dayson.ui/v2/package-lock.json`](v2/package-lock.json).
 
-La publicación de una dependencia sitúa la configuración conservada a partir de esa versión, si la referencia es válida. Una actualización de paquetes puede ser mucho más reciente que el inicio del proyecto. No se restauraron paquetes para comprobarlo.
+A dependency's publication places the preserved configuration at or after that version, if the reference is valid. Package updates may be much newer than the project's beginnings. Packages were not restored to verify this.
 
-Se descartaron las marcas de tiempo de la copia de octubre de 2026 y los documentos generados durante esta revisión. Las fechas recuperables no garantizan que no existan cambios posteriores sin datar.
+October 2026 copy timestamps and documents generated during this review were excluded. Recoverable dates do not guarantee that there are no later, undated changes.
 
-## Por qué merece la pena mirarlo
+## Why this is worth exploring
 
-El calendario está descompuesto en componentes de día, mes y año, junto con vistas por equipo y aprobaciones. Es interesante estudiar cómo un dominio de vacaciones termina expresado en componentes visuales y acciones de usuario.
+The calendar is divided into day, month, and year components, alongside team views and approvals. It is useful for studying how a leave management domain becomes visual components and user actions.
 
-Puntos de entrada al código:
+Code entry points:
 
 - [`v2/src/app/holidays/calendar/calendar-year.component.ts`](v2/src/app/holidays/calendar/calendar-year.component.ts)
 - [`v2/src/app/holidays/calendar/calendar-month.component.ts`](v2/src/app/holidays/calendar/calendar-month.component.ts)
@@ -30,25 +32,25 @@ Puntos de entrada al código:
 
 <!-- END project-context -->
 
-## Estructura y responsabilidades
+## Structure and responsibilities
 
-| Ruta | Responsabilidad |
+| Path | Responsibility |
 | --- | --- |
-| `src/` | Versión AngularJS 1.4, Angular Route, traducciones, Bootstrap 3 y tareas Grunt/Bower. |
-| `v2/` | Versión Angular 5.2 con Angular Material, RxJS, moment y PubNub. |
-| `v2/src/app/admin/` | Administración de empresa, equipos y usuarios. |
-| `v2/src/app/holidays/` | Calendarios, solicitudes y aprobaciones. |
-| `v2/src/app/login/` | Registro, acceso y recuperación de contraseña. |
+| `src/` | AngularJS 1.4 version, Angular Route, translations, Bootstrap 3, and Grunt/Bower tasks. |
+| `v2/` | Angular 5.2 version with Angular Material, RxJS, moment, and PubNub. |
+| `v2/src/app/admin/` | Company, team, and user administration. |
+| `v2/src/app/holidays/` | Calendars, requests, and approvals. |
+| `v2/src/app/login/` | Registration, login, and password recovery. |
 
-## Tecnologías y requisitos
+## Technologies and requirements
 
-Node/npm compatible con Angular CLI 1.x para v2. La versión anterior necesita Grunt 0.4 y Bower. No se ha fijado una versión nueva de Node durante esta revisión.
+Node/npm compatible with Angular CLI 1.x for v2. The earlier version needs Grunt 0.4 and Bower. No new Node version was pinned during this review.
 
-## Preparación y arranque
+## Setup and startup
 
-Configurar las URLs de los servicios DaysOn, empezando por la fachada y autenticación. npm run build compila v2; npm test, npm run lint y npm run e2e están declarados pero no se ejecutaron.
+Configure DaysOn service URLs, starting with the facade and authentication. npm run build compiles v2; npm test, npm run lint, and npm run e2e are declared but were not run.
 
-Comandos de preparación, desde esta carpeta, después de revisar la configuración privada:
+Setup commands, run from this folder after reviewing private configuration:
 
 ```text
 cd v2
@@ -56,26 +58,26 @@ npm install
 npm start
 ```
 
-## Configuración e integraciones
+## Configuration and integrations
 
-Revisar los servicios HTTP y los archivos de entorno antes de abrir la interfaz. gruntfile.js contiene datos de despliegue y sign-in.component.ts claves PubNub para el navegador.
+Review HTTP services and environment files before opening the interface. gruntfile.js contains deployment details, and sign-in.component.ts contains PubNub browser keys.
 
-## Relación con la aplicación DaysOn
+## Relationship to the DaysOn application
 
-Esta carpeta es un componente de DaysOn/HrPlan, dentro de una aplicación distribuida.
+This folder is a DaysOn/HrPlan component within a distributed application.
 
-- [dayson.facade](../dayson.facade/Readme.md): API de coordinación para clientes web.
-- [dayson.auth](../dayson.auth/Readme.md): Identidad, tokens y cuentas.
+- [dayson.facade](../dayson.facade/Readme.md): Coordination API for web clients.
+- [dayson.auth](../dayson.auth/Readme.md): Identity, tokens, and accounts.
 
-El [índice general](../README.md) incluye el mapa del conjunto. Las relaciones descritas proceden de controladores, clientes, contratos y configuración visibles; no se ha verificado su despliegue en ejecución.
+The [main index](../README.md) includes a map of the application. Relationships described here come from visible controllers, clients, contracts, and configuration; a running deployment has not been verified.
 
-## Estado de esta copia
+## Status of this copy
 
-Las claves publish/subscribe del navegador deben revisarse según sus permisos; su presencia no equivale por sí sola a encontrar una clave secreta de PubNub.
+Review browser publish/subscribe keys according to their permissions; their presence alone does not establish that a secret PubNub key has been found.
 
-La revisión fue estática: no se restauraron dependencias, no se compiló ni se ejecutaron aplicaciones o pruebas. Los comandos anteriores son instrucciones de preparación, no resultados de validación. Las versiones indicadas son las del código conservado.
+The review was static: dependencies were not restored, and applications and tests were neither built nor run. The commands above are setup instructions, not validation results. Listed versions describe the preserved code.
 
 
-## Copia pública
+## Public copy
 
-Las credenciales originales se han retirado o sustituido por `REPLACE_WITH_YOUR_VALUE`. Los datos locales, sesiones, certificados privados y perfiles de despliegue se omiten. Configurar servicios y credenciales propios antes de ejecutar. La compilación y el funcionamiento con servicios externos no se han validado.
+Original credentials have been removed or replaced with `REPLACE_WITH_YOUR_VALUE`. Local data, sessions, private certificates, and deployment profiles are omitted. Configure your own services and credentials before running. Building and operation with external services have not been validated.

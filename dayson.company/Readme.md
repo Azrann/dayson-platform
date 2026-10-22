@@ -1,81 +1,83 @@
+**Languages:** [English](Readme.md) · [Español](README.es.md)
+
 # dayson.company
 
-Servicio de organizaciones de DaysOn/HrPlan: empresas, empleados, equipos y publicación de sus eventos de negocio.
+DaysOn/HrPlan organization service: companies, employees, teams, and publication of their business events.
 
-Documentación basada en los archivos locales revisados el 21 de octubre de 2026.
+Documentation based on local files reviewed on 21 October 2026.
 
 <!-- BEGIN project-context -->
 
-## Antigüedad y evidencia
+## Historical dates and evidence
 
-**Año de referencia de esta versión: 2018.** Se toma el archivo de código o configuración más reciente con una fecha histórica recuperable; no se ha podido confirmar la fecha exacta de creación.
+**Reference year for this version: 2018.** This uses the most recent source or configuration file with a recoverable historical date; the exact creation date could not be confirmed.
 
-- Archivo más reciente datable: **2018-07-02**, [`dayson.company/src/DaysOn.CompanyBc.sln`](src/DaysOn.CompanyBc.sln); fecha del commit que modificó el archivo, recuperada del Git local.
-- Primer registro del repositorio Git original que contiene este código: **2015-07-24**. Puede corresponder a una importación; no prueba cuándo se escribió por primera vez.
-- Dependencia fechada más reciente entre las comprobadas: [Castle.Core 4.3.1](https://www.nuget.org/packages/Castle.Core/4.3.1), publicada el **2018-06-20** (versión declarada), en [`dayson.company/src/DaysOn.CompanyBc.Api/packages.config`](src/DaysOn.CompanyBc.Api/packages.config).
-- Referencia adicional: destino `v4.6` en [`dayson.company/src/DaysOn.CompanyBc.Api/DaysOn.CompanyBc.Api.csproj`](src/DaysOn.CompanyBc.Api/DaysOn.CompanyBc.Api.csproj); su [versión estable se publicó el 2015-07-20](https://dotnet.microsoft.com/en-us/platform/support/policy/dotnet-framework). Es una pista de generación tecnológica; pudieron existir versiones preliminares anteriores.
+- Most recent datable file: **2018-07-02**, [`dayson.company/src/DaysOn.CompanyBc.sln`](src/DaysOn.CompanyBc.sln); date of the commit modifying the file, recovered from local Git history.
+- First record in the original Git repository containing this code: **2015-07-24**. This may be an import and does not establish when the code was first written.
+- Most recently published dependency among those checked: [Castle.Core 4.3.1](https://www.nuget.org/packages/Castle.Core/4.3.1), published on **2018-06-20** (declared version), in [`dayson.company/src/DaysOn.CompanyBc.Api/packages.config`](src/DaysOn.CompanyBc.Api/packages.config).
+- Additional reference: target `v4.6` in [`dayson.company/src/DaysOn.CompanyBc.Api/DaysOn.CompanyBc.Api.csproj`](src/DaysOn.CompanyBc.Api/DaysOn.CompanyBc.Api.csproj); its [stable release was published on 2015-07-20](https://dotnet.microsoft.com/en-us/platform/support/policy/dotnet-framework). This indicates the technology generation; earlier preview releases may have existed.
 
-La publicación de una dependencia sitúa la configuración conservada a partir de esa versión, si la referencia es válida. Una actualización de paquetes puede ser mucho más reciente que el inicio del proyecto. No se restauraron paquetes para comprobarlo.
+A dependency's publication places the preserved configuration at or after that version, if the reference is valid. Package updates may be much newer than the project's beginnings. Packages were not restored to verify this.
 
-Se descartaron las marcas de tiempo de la copia de octubre de 2026 y los documentos generados durante esta revisión. Las fechas recuperables no garantizan que no existan cambios posteriores sin datar.
+October 2026 copy timestamps and documents generated during this review were excluded. Recoverable dates do not guarantee that there are no later, undated changes.
 
-## Por qué merece la pena mirarlo
+## Why this is worth exploring
 
-El modelo de empresas, equipos y empleados publica eventos que consumen otros servicios de DaysOn. Es útil para estudiar cómo una modificación del organigrama se propaga a identidad y vacaciones sin concentrar todas las responsabilidades en un solo servicio.
+The company, team, and employee model publishes events consumed by other DaysOn services. It shows how an organizational change propagates to identity and leave management without concentrating every responsibility in one service.
 
-Puntos de entrada al código:
+Code entry points:
 
 - [`src/DaysOn.CompanyBc.Domain/Events`](src/DaysOn.CompanyBc.Domain/Events/)
 - [`src/DaysOn.CompanyBc.Api/Controllers/CompanyController.cs`](src/DaysOn.CompanyBc.Api/Controllers/CompanyController.cs)
 
 <!-- END project-context -->
 
-## Estructura y responsabilidades
+## Structure and responsibilities
 
-| Ruta | Responsabilidad |
+| Path | Responsibility |
 | --- | --- |
-| `src/DaysOn.CompanyBc.Api/` | Controladores Company y Version y arranque Web API/OWIN. |
-| `src/DaysOn.CompanyBc.Domain/` | Entidades Company, Employee y Team, persistencia y servicios de búsqueda y equipos. |
-| `src/DaysOn.CompanyBc.Models/, src/DaysOn.CompanyBc.SharedKernel/` | Comandos, DTOs y soporte de dominio. |
-| `src/DaysOn.CompanyBc.Host/` | Host IIS. |
-| `src/DaysOn.CompanyBc.Test.*/` | Pruebas unitarias, de integración y aceptación. |
+| `src/DaysOn.CompanyBc.Api/` | Company and Version controllers and Web API/OWIN startup. |
+| `src/DaysOn.CompanyBc.Domain/` | Company, Employee, and Team entities, persistence, search, and team services. |
+| `src/DaysOn.CompanyBc.Models/, src/DaysOn.CompanyBc.SharedKernel/` | Commands, DTOs, and domain support. |
+| `src/DaysOn.CompanyBc.Host/` | IIS host. |
+| `src/DaysOn.CompanyBc.Test.*/` | Unit, integration, and acceptance tests. |
 
-## Tecnologías y requisitos
+## Technologies and requirements
 
-Windows, Visual Studio/MSBuild, paquetes NuGet y herramientas del .NET Framework declarado por cada proyecto. Los servicios HTTP usan Web API/OWIN y los hosts IIS requieren IIS Express o IIS. Hay dependencias DaysOn.* propias cuya disponibilidad en los feeds originales no se ha comprobado.
+Windows, Visual Studio/MSBuild, NuGet packages, and tools for the .NET Framework version declared by each project. HTTP services use Web API/OWIN, and IIS hosts require IIS Express or IIS. Availability of the internal DaysOn.* dependencies in their original feeds has not been checked.
 
-Los servicios y bases de datos necesarios dependen de la configuración privada del componente.
+Required services and databases depend on the component's private configuration.
 
-Destinos leídos de los proyectos: `v4.6`.
+Targets read from project files: `v4.6`.
 
-## Preparación y arranque
+## Setup and startup
 
-Restaurar src/DaysOn.CompanyBc.sln y seleccionar DaysOn.CompanyBc.Host como inicio en IIS Express. Preparar las conexiones y el intercambio de eventos con Auth y Holidays.
+Restore src/DaysOn.CompanyBc.sln and select DaysOn.CompanyBc.Host as the IIS Express startup project. Prepare connections and event exchange with Auth and Holidays.
 
-Soluciones presentes: `src/DaysOn.CompanyBc.sln`.
+Solutions present: `src/DaysOn.CompanyBc.sln`.
 
-## Configuración e integraciones
+## Configuration and integrations
 
-Web.config del host y App.config de API/dominio incluyen bases, bus y JWT. Revisar transformaciones Web.Production.config y Web.Release.config y los perfiles de publicación.
+The host's Web.config and API/domain App.config files include database, bus, and JWT settings. Review Web.Production.config and Web.Release.config transformations and publish profiles.
 
-## Relación con la aplicación DaysOn
+## Relationship to the DaysOn application
 
-Esta carpeta es un componente de DaysOn/HrPlan, dentro de una aplicación distribuida.
+This folder is a DaysOn/HrPlan component within a distributed application.
 
-- [dayson.auth](../dayson.auth/Readme.md): Identidad, tokens y cuentas.
-- [dayson.holidays](../dayson.holidays/Readme.md): Vacaciones, reglas, aprobaciones y saldos.
-- [dayson.common](../dayson.common/Readme.md): Bibliotecas, contratos, datos y mensajería compartidos.
-- [dayson.facade](../dayson.facade/Readme.md): API de coordinación para clientes web.
+- [dayson.auth](../dayson.auth/Readme.md): Identity, tokens, and accounts.
+- [dayson.holidays](../dayson.holidays/Readme.md): Leave, rules, approvals, and balances.
+- [dayson.common](../dayson.common/Readme.md): Shared libraries, contracts, data, and messaging.
+- [dayson.facade](../dayson.facade/Readme.md): Coordination API for web clients.
 
-El [índice general](../README.md) incluye el mapa del conjunto. Las relaciones descritas proceden de controladores, clientes, contratos y configuración visibles; no se ha verificado su despliegue en ejecución.
+The [main index](../README.md) includes a map of the application. Relationships described here come from visible controllers, clients, contracts, and configuration; a running deployment has not been verified.
 
-## Estado de esta copia
+## Status of this copy
 
-Los eventos de empresas, empleados y equipos alimentan otros contextos de DaysOn; Holidays incorpora manejadores específicos para ellos.
+Company, employee, and team events feed other DaysOn contexts; Holidays includes dedicated handlers for them.
 
-La revisión fue estática: no se restauraron dependencias, no se compiló ni se ejecutaron aplicaciones o pruebas. Los comandos anteriores son instrucciones de preparación, no resultados de validación. Las versiones indicadas son las del código conservado.
+The review was static: dependencies were not restored, and applications and tests were neither built nor run. The commands above are setup instructions, not validation results. Listed versions describe the preserved code.
 
 
-## Copia pública
+## Public copy
 
-Las credenciales originales se han retirado o sustituido por `REPLACE_WITH_YOUR_VALUE`. Los datos locales, sesiones, certificados privados y perfiles de despliegue se omiten. Configurar servicios y credenciales propios antes de ejecutar. La compilación y el funcionamiento con servicios externos no se han validado.
+Original credentials have been removed or replaced with `REPLACE_WITH_YOUR_VALUE`. Local data, sessions, private certificates, and deployment profiles are omitted. Configure your own services and credentials before running. Building and operation with external services have not been validated.

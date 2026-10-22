@@ -1,25 +1,27 @@
+**Languages:** [English](README.md) · [Español](README.es.md)
+
 # dayson-platform
 
-Aplicación DaysOn/HrPlan: identidad, empresas, vacaciones, mensajería, registro y clientes web.
+DaysOn/HrPlan application: identity, companies, leave, messaging, logging, and web clients.
 
 <!-- BEGIN project-context -->
 
-## Antigüedad y evidencia
+## Historical dates and evidence
 
-**Año de referencia de esta versión: 2018.** Se toma el archivo de código o configuración más reciente con una fecha histórica recuperable; no se ha podido confirmar la fecha exacta de creación.
+**Reference year for this version: 2018.** This uses the most recent source or configuration file with a recoverable historical date; the exact creation date could not be confirmed.
 
-- Archivo más reciente datable: **2018-07-02**, [`dayson.auth/src/DaysOn.Auth.Web/Providers/CustomOAuthProvider.cs`](dayson.auth/src/DaysOn.Auth.Web/Providers/CustomOAuthProvider.cs); fecha del commit que modificó el archivo, recuperada del Git local.
-- Primer registro entre los repositorios Git originales incluidos: **2015-07-12**. Puede corresponder a una importación; no prueba cuándo se escribió por primera vez.
-- Dependencia fechada más reciente entre las comprobadas: [Castle.Core 4.3.1](https://www.nuget.org/packages/Castle.Core/4.3.1), publicada el **2018-06-20** (versión declarada), en [`dayson.auth/src/DaysOn.Auth.Acceptance/packages.config`](dayson.auth/src/DaysOn.Auth.Acceptance/packages.config).
-- Referencia adicional: destino `v4.6.1` en [`dayson.common/src/DaysOn.Common.ServiceBase.Test/DaysOn.Common.ServiceBase.Test.csproj`](dayson.common/src/DaysOn.Common.ServiceBase.Test/DaysOn.Common.ServiceBase.Test.csproj); su [versión estable se publicó el 2015-11-30](https://dotnet.microsoft.com/en-us/platform/support/policy/dotnet-framework). Es una pista de generación tecnológica; pudieron existir versiones preliminares anteriores.
+- Most recent datable file: **2018-07-02**, [`dayson.auth/src/DaysOn.Auth.Web/Providers/CustomOAuthProvider.cs`](dayson.auth/src/DaysOn.Auth.Web/Providers/CustomOAuthProvider.cs); date of the commit modifying the file, recovered from local Git history.
+- Earliest record among the original Git repositories included: **2015-07-12**. This may be an import and does not establish when the code was first written.
+- Most recently published dependency among those checked: [Castle.Core 4.3.1](https://www.nuget.org/packages/Castle.Core/4.3.1), published on **2018-06-20** (declared version), in [`dayson.auth/src/DaysOn.Auth.Acceptance/packages.config`](dayson.auth/src/DaysOn.Auth.Acceptance/packages.config).
+- Additional reference: target `v4.6.1` in [`dayson.common/src/DaysOn.Common.ServiceBase.Test/DaysOn.Common.ServiceBase.Test.csproj`](dayson.common/src/DaysOn.Common.ServiceBase.Test/DaysOn.Common.ServiceBase.Test.csproj); its [stable release was published on 2015-11-30](https://dotnet.microsoft.com/en-us/platform/support/policy/dotnet-framework). This indicates the technology generation; earlier preview releases may have existed.
 
-La publicación de una dependencia sitúa la configuración conservada a partir de esa versión, si la referencia es válida. Una actualización de paquetes puede ser mucho más reciente que el inicio del proyecto. No se restauraron paquetes para comprobarlo.
+A dependency's publication places the preserved configuration at or after that version, if the reference is valid. Package updates may be much newer than the project's beginnings. Packages were not restored to verify this.
 
-Se descartaron las marcas de tiempo de la copia de octubre de 2026 y los documentos generados durante esta revisión. Las fechas recuperables no garantizan que no existan cambios posteriores sin datar.
+October 2026 copy timestamps and documents generated during this review were excluded. Recoverable dates do not guarantee that there are no later, undated changes.
 
-Años de referencia por componente (archivo más reciente datable):
+Reference years by component (most recent datable file):
 
-| Componente | Año |
+| Component | Year |
 | --- | --- |
 | [`dayson.auth`](dayson.auth/) | 2018 |
 | [`dayson.common`](dayson.common/) | 2018 |
@@ -29,14 +31,14 @@ Años de referencia por componente (archivo más reciente datable):
 | [`dayson.holidays`](dayson.holidays/) | 2018 |
 | [`dayson.log`](dayson.log/) | 2016 |
 | [`dayson.logapi`](dayson.logapi/) | 2016 |
-| [`dayson.tower`](dayson.tower/) | Sin determinar |
+| [`dayson.tower`](dayson.tower/) | Undetermined |
 | [`dayson.ui`](dayson.ui/) | 2018 |
 
-## Por qué merece la pena mirarlo
+## Why this is worth exploring
 
-El recorrido solicitud de vacaciones → eventos → cálculo de días laborables → aprobación conecta varios microservicios con un problema de negocio reconocible. El calendario del frontend ayuda a ver el resultado de esa separación de responsabilidades.
+The leave request → events → business day calculation → approval flow connects several microservices to a recognizable business problem. The frontend calendar shows the result of that separation of responsibilities.
 
-Puntos de entrada al código:
+Code entry points:
 
 - [`dayson.holidays/src/DaysOn.HolidaysBc.Domain`](dayson.holidays/src/DaysOn.HolidaysBc.Domain/)
 - [`dayson.functions/src/DaysOn.Functions.Api/BusEventHandlers`](dayson.functions/src/DaysOn.Functions.Api/BusEventHandlers/)
@@ -44,30 +46,30 @@ Puntos de entrada al código:
 
 <!-- END project-context -->
 
-## Contenido
+## Contents
 
-| Directorio | Función |
+| Directory | Function |
 | --- | --- |
-| [`dayson.auth/`](dayson.auth/) | Servicio de identidad de DaysOn/HrPlan: registro, inicio de sesión, emisión de tokens, activación de cuentas, recuperación de contraseñas y asignación de roles relacionados con equipos. |
-| [`dayson.common/`](dayson.common/) | Bibliotecas e infraestructura compartidas por los componentes de DaysOn/HrPlan. |
-| [`dayson.company/`](dayson.company/) | Servicio de organizaciones de DaysOn/HrPlan: empresas, empleados, equipos y publicación de sus eventos de negocio. |
-| [`dayson.facade/`](dayson.facade/) | Fachada API de DaysOn/HrPlan: ofrece operaciones orientadas a la interfaz y coordina llamadas a autenticación, empresas y vacaciones. |
-| [`dayson.functions/`](dayson.functions/) | Procesamiento de eventos y operaciones de apoyo de DaysOn/HrPlan: validación de solicitudes de vacaciones, cálculo de días laborables y envío de correos. |
-| [`dayson.holidays/`](dayson.holidays/) | Servicio de vacaciones y ausencias de DaysOn/HrPlan: solicitudes, aprobaciones, reglas de empresa, calendario laboral y saldos anuales. |
-| [`dayson.log/`](dayson.log/) | Interfaz web de consulta de registros de DaysOn, hecha con AngularJS, jQuery y Bootstrap. |
-| [`dayson.logapi/`](dayson.logapi/) | API de consulta y limpieza de registros de DaysOn, con almacenamiento SQL y acceso mediante Dapper. |
-| [`dayson.tower/`](dayson.tower/) | Carpeta de repositorio DaysOn sin archivos de trabajo: únicamente se encontró el directorio .git. |
-| [`dayson.ui/`](dayson.ui/) | Interfaz de DaysOn/HrPlan para autenticación, administración de empresas/equipos/empleados y consulta o aprobación de vacaciones. Incluye dos generaciones del frontend. |
+| [`dayson.auth/`](dayson.auth/) | DaysOn/HrPlan identity service: registration, login, token issuance, account activation, password recovery, and team-related role assignment. |
+| [`dayson.common/`](dayson.common/) | Shared libraries and infrastructure for DaysOn/HrPlan components. |
+| [`dayson.company/`](dayson.company/) | DaysOn/HrPlan organization service: companies, employees, teams, and publication of their business events. |
+| [`dayson.facade/`](dayson.facade/) | DaysOn/HrPlan API facade: exposes interface-oriented operations and coordinates calls to authentication, company, and leave services. |
+| [`dayson.functions/`](dayson.functions/) | DaysOn/HrPlan event processing and supporting operations: leave request validation, business day calculation, and email delivery. |
+| [`dayson.holidays/`](dayson.holidays/) | DaysOn/HrPlan leave and absence service: requests, approvals, company rules, work calendar, and annual balances. |
+| [`dayson.log/`](dayson.log/) | DaysOn log viewer built with AngularJS, jQuery, and Bootstrap. |
+| [`dayson.logapi/`](dayson.logapi/) | DaysOn log querying and cleanup API, using SQL storage and Dapper data access. |
+| [`dayson.tower/`](dayson.tower/) | DaysOn repository folder without working files: only the .git directory was found. |
+| [`dayson.ui/`](dayson.ui/) | DaysOn/HrPlan interface for authentication, company/team/employee administration, and leave viewing or approval. Includes two frontend generations. |
 
-Los directorios dayson.* son microservicios y bibliotecas de una misma aplicación. Cada uno conserva su solución y su configuración. dayson.tower no contenía implementación.
+The dayson.* directories are microservices and libraries belonging to a single application. Each retains its solution and configuration. dayson.tower contained no implementation.
 
-## Requisitos y preparación
+## Requirements and setup
 
-.NET Framework, ASP.NET Web API/OWIN, IIS, Azure Functions, NuGet y clientes web.
+.NET Framework, ASP.NET Web API/OWIN, IIS, Azure Functions, NuGet, and web clients.
 
-Esta es una copia histórica. Consultar los archivos de proyecto y los README de cada componente para sus versiones y dependencias. Restaurar NuGet/npm desde la carpeta correspondiente; las bibliotecas internas pueden necesitar reconstrucción. Preparar las bases de datos y los servicios externos con cuentas propias.
+This is a historical copy. Consult each component's project files and README for versions and dependencies. Restore NuGet/npm from the appropriate folder; internal libraries may need rebuilding. Prepare databases and external services using your own accounts.
 
-Soluciones conservadas:
+Preserved solutions:
 
 - `dayson.auth/src/DaysOn.Auth.sln`
 - `dayson.common/src/DaysOn.Common.sln`
@@ -78,21 +80,21 @@ Soluciones conservadas:
 - `dayson.log/src/DaysonLog.sln`
 - `dayson.logapi/src/DaysOn.Log.IISHost.sln`
 
-Paquetes JavaScript principales:
+Main JavaScript packages:
 
 - `dayson.ui/src/package.json`
 - `dayson.ui/v2/package.json`
 
-## Configuración y seguridad
+## Configuration and security
 
-Los secretos originales se han eliminado o sustituido por `REPLACE_WITH_YOUR_VALUE`. Buscar este marcador antes de ejecutar y aportar los valores mediante configuración local o variables de entorno. Las sesiones, claves privadas, certificados de firma, bases de datos, registros, perfiles de despliegue y paquetes binarios no se publican. El `.gitignore` protege estos archivos locales.
+Original secrets have been removed or replaced with `REPLACE_WITH_YOUR_VALUE`. Search for this marker before running and provide values through local configuration or environment variables. Sessions, private keys, signing certificates, databases, logs, deployment profiles, and binary packages are not published. The `.gitignore` protects these local files.
 
-Se publica un historial nuevo: los commits antiguos permanecen únicamente en la copia local original. Los valores de ejemplo no permiten conectarse a los servicios originales.
+A fresh history is published: old commits remain only in the original local copy. Example values cannot connect to the original services.
 
-## Estado de validación
+## Validation status
 
-Se realizó una revisión estática y un escaneo de secretos antes de publicar. No se ejecutaron aplicaciones, operaciones de trading, despliegues ni pruebas que contacten servicios externos. No se garantiza la compilación con herramientas actuales. Algunos proyectos necesitan dependencias históricas y activos que no están incluidos.
+A static review and secret scan were performed before publication. Applications, trading operations, deployments, and tests contacting external services were not run. Building with current tools is not guaranteed. Some projects need historical dependencies and assets that are not included.
 
-## Licencias y procedencia
+## Licenses and provenance
 
-Se conservan las licencias y atribuciones de terceros presentes en el código. No se añade una licencia global a los componentes que no la tenían. Esta importación conserva fuentes locales y no afirma ser una versión actual del proyecto original.
+Third-party licenses and attributions present in the code are retained. No blanket license is added to components that lacked one. This import preserves local sources and does not claim to be a current version of the original project.

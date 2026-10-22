@@ -1,49 +1,51 @@
+**Languages:** [English](Readme.md) · [Español](README.es.md)
+
 # dayson.tower
 
-Carpeta de repositorio DaysOn sin archivos de trabajo: únicamente se encontró el directorio .git.
+DaysOn repository folder without working files: only the .git directory was found.
 
-Documentación basada en los archivos locales revisados el 21 de octubre de 2026.
+Documentation based on local files reviewed on 21 October 2026.
 
 <!-- BEGIN project-context -->
 
-## Antigüedad y evidencia
+## Historical dates and evidence
 
-**Año de creación: sin determinar.** No se conserva código con una fecha histórica verificable.
+**Creation year: undetermined.** No code with a verifiable historical date is preserved.
 
 
-## Por qué merece la pena mirarlo
+## Why this is worth exploring
 
-No se conserva código que permita atribuirle una responsabilidad concreta. Su interés es documental dentro del mapa de DaysOn; el nombre por sí solo no demuestra una implementación de administración o despliegue.
+No code is preserved that establishes a specific responsibility. Its value is documentary within the DaysOn map; the name alone does not demonstrate an administration or deployment implementation.
 
 <!-- END project-context -->
 
-## Tecnologías y requisitos
+## Technologies and requirements
 
-No se puede determinar una tecnología o forma de arranque a partir de esta copia.
+A technology or startup method cannot be determined from this copy.
 
-## Preparación y arranque
+## Setup and startup
 
-Recuperar o completar el árbol de trabajo antes de documentar una implementación. No se cambió de rama ni se restauraron archivos desde el historial.
+Recover or complete the working tree before documenting an implementation. No branches were switched and no files were restored from history.
 
-## Configuración e integraciones
+## Configuration and integrations
 
-No hay configuración de aplicación visible.
+There is no visible application configuration.
 
-## Relación con la aplicación DaysOn
+## Relationship to the DaysOn application
 
-Esta carpeta es un componente de DaysOn/HrPlan, dentro de una aplicación distribuida.
+This folder is a DaysOn/HrPlan component within a distributed application.
 
-No hay código visible para establecer dependencias concretas.
+There is no visible code establishing specific dependencies.
 
-El [índice general](../README.md) incluye el mapa del conjunto. Las relaciones descritas proceden de controladores, clientes, contratos y configuración visibles; no se ha verificado su despliegue en ejecución.
+The [main index](../README.md) includes a map of the application. Relationships described here come from visible controllers, clients, contracts, and configuration; a running deployment has not been verified.
 
-## Estado de esta copia
+## Status of this copy
 
-Su pertenencia a DaysOn se conoce por el contexto aportado; su responsabilidad técnica no puede verificarse con los archivos presentes.
+Its membership in DaysOn is known from the context provided; its technical responsibility cannot be verified from the available files.
 
-La revisión fue estática: no se restauraron dependencias, no se compiló ni se ejecutaron aplicaciones o pruebas. Los comandos anteriores son instrucciones de preparación, no resultados de validación. Las versiones indicadas son las del código conservado.
+The review was static: dependencies were not restored, and applications and tests were neither built nor run. The commands above are setup instructions, not validation results. Listed versions describe the preserved code.
 
 
-## Copia pública
+## Public copy
 
-Las credenciales originales se han retirado o sustituido por `REPLACE_WITH_YOUR_VALUE`. Los datos locales, sesiones, certificados privados y perfiles de despliegue se omiten. Configurar servicios y credenciales propios antes de ejecutar. La compilación y el funcionamiento con servicios externos no se han validado.
+Original credentials have been removed or replaced with `REPLACE_WITH_YOUR_VALUE`. Local data, sessions, private certificates, and deployment profiles are omitted. Configure your own services and credentials before running. Building and operation with external services have not been validated.

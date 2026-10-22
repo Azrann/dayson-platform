@@ -1,29 +1,31 @@
+**Languages:** [English](Readme.md) · [Español](README.es.md)
+
 # dayson.common
 
-Bibliotecas e infraestructura compartidas por los componentes de DaysOn/HrPlan.
+Shared libraries and infrastructure for DaysOn/HrPlan components.
 
-Documentación basada en los archivos locales revisados el 21 de octubre de 2026.
+Documentation based on local files reviewed on 21 October 2026.
 
 <!-- BEGIN project-context -->
 
-## Antigüedad y evidencia
+## Historical dates and evidence
 
-**Año de referencia de esta versión: 2018.** Se toma el archivo de código o configuración más reciente con una fecha histórica recuperable; no se ha podido confirmar la fecha exacta de creación.
+**Reference year for this version: 2018.** This uses the most recent source or configuration file with a recoverable historical date; the exact creation date could not be confirmed.
 
-- Archivo más reciente datable: **2018-07-02**, [`dayson.common/src/DaysOn.Common/packages.config`](src/DaysOn.Common/packages.config); fecha del commit que modificó el archivo, recuperada del Git local.
-- Primer registro del repositorio Git original que contiene este código: **2016-01-25**. Puede corresponder a una importación; no prueba cuándo se escribió por primera vez.
-- Dependencia fechada más reciente entre las comprobadas: [JustEat.StatsD 3.0.0](https://www.nuget.org/packages/JustEat.StatsD/3.0.0), publicada el **2018-06-20** (versión declarada), en [`dayson.common/src/DaysOn.Common/packages.config`](src/DaysOn.Common/packages.config).
-- Referencia adicional: destino `v4.6.1` en [`dayson.common/src/DaysOn.Common.ServiceBase.Test/DaysOn.Common.ServiceBase.Test.csproj`](src/DaysOn.Common.ServiceBase.Test/DaysOn.Common.ServiceBase.Test.csproj); su [versión estable se publicó el 2015-11-30](https://dotnet.microsoft.com/en-us/platform/support/policy/dotnet-framework). Es una pista de generación tecnológica; pudieron existir versiones preliminares anteriores.
+- Most recent datable file: **2018-07-02**, [`dayson.common/src/DaysOn.Common/packages.config`](src/DaysOn.Common/packages.config); date of the commit modifying the file, recovered from local Git history.
+- First record in the original Git repository containing this code: **2016-01-25**. This may be an import and does not establish when the code was first written.
+- Most recently published dependency among those checked: [JustEat.StatsD 3.0.0](https://www.nuget.org/packages/JustEat.StatsD/3.0.0), published on **2018-06-20** (declared version), in [`dayson.common/src/DaysOn.Common/packages.config`](src/DaysOn.Common/packages.config).
+- Additional reference: target `v4.6.1` in [`dayson.common/src/DaysOn.Common.ServiceBase.Test/DaysOn.Common.ServiceBase.Test.csproj`](src/DaysOn.Common.ServiceBase.Test/DaysOn.Common.ServiceBase.Test.csproj); its [stable release was published on 2015-11-30](https://dotnet.microsoft.com/en-us/platform/support/policy/dotnet-framework). This indicates the technology generation; earlier preview releases may have existed.
 
-La publicación de una dependencia sitúa la configuración conservada a partir de esa versión, si la referencia es válida. Una actualización de paquetes puede ser mucho más reciente que el inicio del proyecto. No se restauraron paquetes para comprobarlo.
+A dependency's publication places the preserved configuration at or after that version, if the reference is valid. Package updates may be much newer than the project's beginnings. Packages were not restored to verify this.
 
-Se descartaron las marcas de tiempo de la copia de octubre de 2026 y los documentos generados durante esta revisión. Las fechas recuperables no garantizan que no existan cambios posteriores sin datar.
+October 2026 copy timestamps and documents generated during this review were excluded. Recoverable dates do not guarantee that there are no later, undated changes.
 
-## Por qué merece la pena mirarlo
+## Why this is worth exploring
 
-Las abstracciones del bus, contratos compartidos y utilidades de infraestructura permiten ver qué comparten los microservicios y dónde se mantiene la separación entre ellos. AzureServiceBus es un buen punto de entrada para seguir la comunicación mediante eventos.
+Bus abstractions, shared contracts, and infrastructure utilities show what the microservices share and where they remain separate. AzureServiceBus is a good entry point for following event-based communication.
 
-Puntos de entrada al código:
+Code entry points:
 
 - [`src/DaysOn.Common/AzureBus/AzureServiceBus.cs`](src/DaysOn.Common/AzureBus/AzureServiceBus.cs)
 - [`src/DaysOn.Common/AzureBus/IServiceBus.cs`](src/DaysOn.Common/AzureBus/IServiceBus.cs)
@@ -31,54 +33,54 @@ Puntos de entrada al código:
 
 <!-- END project-context -->
 
-## Estructura y responsabilidades
+## Structure and responsibilities
 
-| Ruta | Responsabilidad |
+| Path | Responsibility |
 | --- | --- |
-| `src/DaysOn.Common/` | Mensajería mediante Azure Service Bus y PubNub y manejadores de mensajes. |
-| `src/DaysOn.Common.Events/` | Contratos de eventos entre servicios. |
-| `src/DaysOn.Common.DataAccess/, src/DaysOn.Common.SqlDataAccess/` | Persistencia y utilidades de acceso a datos. |
-| `src/DaysOn.Common.Domain/, src/DaysOn.Common.ServiceBase/, src/DaysOn.Common.Utilities/` | Eventos de dominio, arranque OWIN, inyección de dependencias y utilidades. |
-| `src/DaysOn.Common.CloudSites/, src/DaysOn.Common.CronService/, src/Scale/` | Integración de alojamiento y bases de GearHost y herramientas auxiliares. |
-| `src/WindowsService1/` | Proyecto auxiliar de servicio Windows. |
+| `src/DaysOn.Common/` | Azure Service Bus and PubNub messaging and message handlers. |
+| `src/DaysOn.Common.Events/` | Cross-service event contracts. |
+| `src/DaysOn.Common.DataAccess/, src/DaysOn.Common.SqlDataAccess/` | Persistence and data access utilities. |
+| `src/DaysOn.Common.Domain/, src/DaysOn.Common.ServiceBase/, src/DaysOn.Common.Utilities/` | Domain events, OWIN startup, dependency injection, and utilities. |
+| `src/DaysOn.Common.CloudSites/, src/DaysOn.Common.CronService/, src/Scale/` | GearHost hosting and database integration and auxiliary tools. |
+| `src/WindowsService1/` | Auxiliary Windows service project. |
 
-## Tecnologías y requisitos
+## Technologies and requirements
 
-Windows, Visual Studio/MSBuild, paquetes NuGet y herramientas del .NET Framework declarado por cada proyecto. Los servicios HTTP usan Web API/OWIN y los hosts IIS requieren IIS Express o IIS. Hay dependencias DaysOn.* propias cuya disponibilidad en los feeds originales no se ha comprobado.
+Windows, Visual Studio/MSBuild, NuGet packages, and tools for the .NET Framework version declared by each project. HTTP services use Web API/OWIN, and IIS hosts require IIS Express or IIS. Availability of the internal DaysOn.* dependencies in their original feeds has not been checked.
 
-Los servicios y bases de datos necesarios dependen de la configuración privada del componente.
+Required services and databases depend on the component's private configuration.
 
-Destinos leídos de los proyectos: `v4.5.2`, `v4.6`, `v4.6.1`.
+Targets read from project files: `v4.5.2`, `v4.6`, `v4.6.1`.
 
-## Preparación y arranque
+## Setup and startup
 
-Restaurar y compilar src/DaysOn.Common.sln. Las bibliotecas se consumen desde otros repositorios a través de paquetes DaysOn.Common.*; revisar los .nuspec antes de preparar paquetes locales.
+Restore and build src/DaysOn.Common.sln. Other repositories consume the libraries through DaysOn.Common.* packages; review .nuspec files before preparing local packages.
 
-Soluciones presentes: `src/DaysOn.Common.sln`.
+Solutions present: `src/DaysOn.Common.sln`.
 
-## Configuración e integraciones
+## Configuration and integrations
 
-Las pruebas de suscriptores usan NoSQL, PubNub, Ably y Service Bus. Las herramientas de alojamiento leen gearhostkey; HrPlanCloudService también contiene credenciales de base de datos en código.
+Subscriber tests use NoSQL, PubNub, Ably, and Service Bus. Hosting tools read gearhostkey; HrPlanCloudService also contains database credentials in code.
 
-## Relación con la aplicación DaysOn
+## Relationship to the DaysOn application
 
-Esta carpeta es un componente de DaysOn/HrPlan, dentro de una aplicación distribuida.
+This folder is a DaysOn/HrPlan component within a distributed application.
 
-- [dayson.auth](../dayson.auth/Readme.md): Identidad, tokens y cuentas.
-- [dayson.company](../dayson.company/Readme.md): Empresas, equipos y empleados.
-- [dayson.holidays](../dayson.holidays/Readme.md): Vacaciones, reglas, aprobaciones y saldos.
-- [dayson.functions](../dayson.functions/Readme.md): Procesamiento de eventos, días laborables y correo.
-- [dayson.facade](../dayson.facade/Readme.md): API de coordinación para clientes web.
+- [dayson.auth](../dayson.auth/Readme.md): Identity, tokens, and accounts.
+- [dayson.company](../dayson.company/Readme.md): Companies, teams, and employees.
+- [dayson.holidays](../dayson.holidays/Readme.md): Leave, rules, approvals, and balances.
+- [dayson.functions](../dayson.functions/Readme.md): Event processing, business days, and email.
+- [dayson.facade](../dayson.facade/Readme.md): Coordination API for web clients.
 
-El [índice general](../README.md) incluye el mapa del conjunto. Las relaciones descritas proceden de controladores, clientes, contratos y configuración visibles; no se ha verificado su despliegue en ejecución.
+The [main index](../README.md) includes a map of the application. Relationships described here come from visible controllers, clients, contracts, and configuration; a running deployment has not been verified.
 
-## Estado de esta copia
+## Status of this copy
 
-Las funciones de administración de alojamiento pueden crear o cambiar infraestructura. No se ejecutaron herramientas de escalado, cron ni pruebas conectadas.
+Hosting administration functions can create or modify infrastructure. Scaling tools, cron jobs, and connected tests were not run.
 
-La revisión fue estática: no se restauraron dependencias, no se compiló ni se ejecutaron aplicaciones o pruebas. Los comandos anteriores son instrucciones de preparación, no resultados de validación. Las versiones indicadas son las del código conservado.
+The review was static: dependencies were not restored, and applications and tests were neither built nor run. The commands above are setup instructions, not validation results. Listed versions describe the preserved code.
 
 
-## Copia pública
+## Public copy
 
-Las credenciales originales se han retirado o sustituido por `REPLACE_WITH_YOUR_VALUE`. Los datos locales, sesiones, certificados privados y perfiles de despliegue se omiten. Configurar servicios y credenciales propios antes de ejecutar. La compilación y el funcionamiento con servicios externos no se han validado.
+Original credentials have been removed or replaced with `REPLACE_WITH_YOUR_VALUE`. Local data, sessions, private certificates, and deployment profiles are omitted. Configure your own services and credentials before running. Building and operation with external services have not been validated.

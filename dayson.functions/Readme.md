@@ -1,29 +1,31 @@
+**Languages:** [English](Readme.md) · [Español](README.es.md)
+
 # dayson.functions
 
-Procesamiento de eventos y operaciones de apoyo de DaysOn/HrPlan: validación de solicitudes de vacaciones, cálculo de días laborables y envío de correos.
+DaysOn/HrPlan event processing and supporting operations: leave request validation, business day calculation, and email delivery.
 
-Documentación basada en los archivos locales revisados el 21 de octubre de 2026.
+Documentation based on local files reviewed on 21 October 2026.
 
 <!-- BEGIN project-context -->
 
-## Antigüedad y evidencia
+## Historical dates and evidence
 
-**Año de referencia de esta versión: 2018.** Se toma el archivo de código o configuración más reciente con una fecha histórica recuperable; no se ha podido confirmar la fecha exacta de creación.
+**Reference year for this version: 2018.** This uses the most recent source or configuration file with a recoverable historical date; the exact creation date could not be confirmed.
 
-- Archivo más reciente datable: **2018-06-30**, [`dayson.functions/src/DaysOn.Functions.sln`](src/DaysOn.Functions.sln); fecha del commit que modificó el archivo, recuperada del Git local.
-- Primer registro del repositorio Git original que contiene este código: **2016-08-02**. Puede corresponder a una importación; no prueba cuándo se escribió por primera vez.
-- Dependencia fechada más reciente entre las comprobadas: [Castle.Core 4.3.1](https://www.nuget.org/packages/Castle.Core/4.3.1), publicada el **2018-06-20** (versión declarada), en [`dayson.functions/src/DaysOn.Functions.Api/packages.config`](src/DaysOn.Functions.Api/packages.config).
-- Referencia adicional: destino `v4.6` en [`dayson.functions/src/DaysOn.Functions.Api/DaysOn.Functions.Api.csproj`](src/DaysOn.Functions.Api/DaysOn.Functions.Api.csproj); su [versión estable se publicó el 2015-07-20](https://dotnet.microsoft.com/en-us/platform/support/policy/dotnet-framework). Es una pista de generación tecnológica; pudieron existir versiones preliminares anteriores.
+- Most recent datable file: **2018-06-30**, [`dayson.functions/src/DaysOn.Functions.sln`](src/DaysOn.Functions.sln); date of the commit modifying the file, recovered from local Git history.
+- First record in the original Git repository containing this code: **2016-08-02**. This may be an import and does not establish when the code was first written.
+- Most recently published dependency among those checked: [Castle.Core 4.3.1](https://www.nuget.org/packages/Castle.Core/4.3.1), published on **2018-06-20** (declared version), in [`dayson.functions/src/DaysOn.Functions.Api/packages.config`](src/DaysOn.Functions.Api/packages.config).
+- Additional reference: target `v4.6` in [`dayson.functions/src/DaysOn.Functions.Api/DaysOn.Functions.Api.csproj`](src/DaysOn.Functions.Api/DaysOn.Functions.Api.csproj); its [stable release was published on 2015-07-20](https://dotnet.microsoft.com/en-us/platform/support/policy/dotnet-framework). This indicates the technology generation; earlier preview releases may have existed.
 
-La publicación de una dependencia sitúa la configuración conservada a partir de esa versión, si la referencia es válida. Una actualización de paquetes puede ser mucho más reciente que el inicio del proyecto. No se restauraron paquetes para comprobarlo.
+A dependency's publication places the preserved configuration at or after that version, if the reference is valid. Package updates may be much newer than the project's beginnings. Packages were not restored to verify this.
 
-Se descartaron las marcas de tiempo de la copia de octubre de 2026 y los documentos generados durante esta revisión. Las fechas recuperables no garantizan que no existan cambios posteriores sin datar.
+October 2026 copy timestamps and documents generated during this review were excluded. Recoverable dates do not guarantee that there are no later, undated changes.
 
-## Por qué merece la pena mirarlo
+## Why this is worth exploring
 
-Los handlers conectan solicitudes de vacaciones, cálculo de días laborables y envío de correo. Es un ejemplo concreto de cómo sacar trabajo de coordinación a consumidores de eventos y mantenerlo separado de la API que recibe la solicitud.
+Handlers connect leave requests, business day calculations, and email delivery. This provides a concrete example of moving coordination work to event consumers and keeping it separate from the API receiving the request.
 
-Puntos de entrada al código:
+Code entry points:
 
 - [`src/DaysOn.Functions.Api/BusEventHandlers/CalculateBusinessDaysEventHandler.cs`](src/DaysOn.Functions.Api/BusEventHandlers/CalculateBusinessDaysEventHandler.cs)
 - [`src/DaysOn.Functions.Api/BusEventHandlers/AddHolidayRequestEventHandler.cs`](src/DaysOn.Functions.Api/BusEventHandlers/AddHolidayRequestEventHandler.cs)
@@ -31,50 +33,50 @@ Puntos de entrada al código:
 
 <!-- END project-context -->
 
-## Estructura y responsabilidades
+## Structure and responsibilities
 
-| Ruta | Responsabilidad |
+| Path | Responsibility |
 | --- | --- |
-| `src/DaysOn.Functions.Api/BusEventHandlers/` | Manejadores AddHolidayRequest, CalculateBusinessDays y SendEmail. |
-| `src/DaysOn.Functions.Domain/` | CreateHolidayService, validación de periodos y cálculo de días laborables. |
-| `src/DaysOn.Functions.Models/` | Comandos y resultados. |
-| `src/DaysOn.Functions.Host/` | Host IIS/OWIN del componente. |
-| `src/DaysOn.Functions.Test.*/, src/DaysOn.Functions.BoundedContextTests/` | Pruebas de reglas y eventos. |
+| `src/DaysOn.Functions.Api/BusEventHandlers/` | AddHolidayRequest, CalculateBusinessDays, and SendEmail handlers. |
+| `src/DaysOn.Functions.Domain/` | CreateHolidayService, period validation, and business day calculation. |
+| `src/DaysOn.Functions.Models/` | Commands and results. |
+| `src/DaysOn.Functions.Host/` | Component IIS/OWIN host. |
+| `src/DaysOn.Functions.Test.*/, src/DaysOn.Functions.BoundedContextTests/` | Rule and event tests. |
 
-## Tecnologías y requisitos
+## Technologies and requirements
 
-Windows, Visual Studio/MSBuild, paquetes NuGet y herramientas del .NET Framework declarado por cada proyecto. Los servicios HTTP usan Web API/OWIN y los hosts IIS requieren IIS Express o IIS. Hay dependencias DaysOn.* propias cuya disponibilidad en los feeds originales no se ha comprobado.
+Windows, Visual Studio/MSBuild, NuGet packages, and tools for the .NET Framework version declared by each project. HTTP services use Web API/OWIN, and IIS hosts require IIS Express or IIS. Availability of the internal DaysOn.* dependencies in their original feeds has not been checked.
 
-Los servicios y bases de datos necesarios dependen de la configuración privada del componente.
+Required services and databases depend on the component's private configuration.
 
-Destinos leídos de los proyectos: `v4.6`.
+Targets read from project files: `v4.6`.
 
-## Preparación y arranque
+## Setup and startup
 
-Restaurar src/DaysOn.Functions.sln y seleccionar DaysOn.Functions.Host. Preparar el bus y los datos de Holidays antes de procesar eventos.
+Restore src/DaysOn.Functions.sln and select DaysOn.Functions.Host. Prepare the bus and Holidays data before processing events.
 
-Soluciones presentes: `src/DaysOn.Functions.sln`.
+Solutions present: `src/DaysOn.Functions.sln`.
 
-## Configuración e integraciones
+## Configuration and integrations
 
-Conexiones a bases, JWT y mensajería en el host y las configuraciones de pruebas. SendEmailEventHandler.cs y una prueba de integración contienen una clave SendGrid literal.
+Database connections, JWT, and messaging are configured in the host and test settings. SendEmailEventHandler.cs and an integration test contain a literal SendGrid key.
 
-## Relación con la aplicación DaysOn
+## Relationship to the DaysOn application
 
-Esta carpeta es un componente de DaysOn/HrPlan, dentro de una aplicación distribuida.
+This folder is a DaysOn/HrPlan component within a distributed application.
 
-- [dayson.holidays](../dayson.holidays/Readme.md): Vacaciones, reglas, aprobaciones y saldos.
-- [dayson.common](../dayson.common/Readme.md): Bibliotecas, contratos, datos y mensajería compartidos.
+- [dayson.holidays](../dayson.holidays/Readme.md): Leave, rules, approvals, and balances.
+- [dayson.common](../dayson.common/Readme.md): Shared libraries, contracts, data, and messaging.
 
-El [índice general](../README.md) incluye el mapa del conjunto. Las relaciones descritas proceden de controladores, clientes, contratos y configuración visibles; no se ha verificado su despliegue en ejecución.
+The [main index](../README.md) includes a map of the application. Relationships described here come from visible controllers, clients, contracts, and configuration; a running deployment has not been verified.
 
-## Estado de esta copia
+## Status of this copy
 
-El proyecto utiliza servicios y contratos DaysOn.HolidaysBc y DaysOn.Common.Events para procesar solicitudes.
+The project uses DaysOn.HolidaysBc and DaysOn.Common.Events services and contracts to process requests.
 
-La revisión fue estática: no se restauraron dependencias, no se compiló ni se ejecutaron aplicaciones o pruebas. Los comandos anteriores son instrucciones de preparación, no resultados de validación. Las versiones indicadas son las del código conservado.
+The review was static: dependencies were not restored, and applications and tests were neither built nor run. The commands above are setup instructions, not validation results. Listed versions describe the preserved code.
 
 
-## Copia pública
+## Public copy
 
-Las credenciales originales se han retirado o sustituido por `REPLACE_WITH_YOUR_VALUE`. Los datos locales, sesiones, certificados privados y perfiles de despliegue se omiten. Configurar servicios y credenciales propios antes de ejecutar. La compilación y el funcionamiento con servicios externos no se han validado.
+Original credentials have been removed or replaced with `REPLACE_WITH_YOUR_VALUE`. Local data, sessions, private certificates, and deployment profiles are omitted. Configure your own services and credentials before running. Building and operation with external services have not been validated.
